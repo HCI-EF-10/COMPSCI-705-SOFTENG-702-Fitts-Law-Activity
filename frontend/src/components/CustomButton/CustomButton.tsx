@@ -1,7 +1,7 @@
 import React from 'react';
 import {styled} from "@mui/material/styles";
 import {Button, buttonClasses} from "@mui/material";
-import theme from "../../util/Theme/Theme";
+import theme from "../../util/Theme/theme";
 
 const CustomStyledButton = styled(Button)(({ theme }) => ({
     [`&.${buttonClasses.root}`]: {

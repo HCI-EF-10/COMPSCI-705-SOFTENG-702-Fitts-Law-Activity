@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@mui/material";
 import { render, screen } from "@testing-library/react";
 import CustomButton from "../CustomButton";
-import theme from "../../../util/Theme/Theme";
+import theme from "../../../util/Theme/theme";
 
 describe("CustomButton", () => {
     it("display a custom button", () => {
