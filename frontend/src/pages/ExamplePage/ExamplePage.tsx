@@ -6,6 +6,47 @@ import HoverIcon from '../../components/HoverIcon/HoverIcon';
 import HelpIcon from '@mui/icons-material/Help';
 import {Menu} from "../../util/Types/ApiTypes";
 import MenuContainer from "../../components/MenuContainer/MenuContainer";
+import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
+import {FoodOption} from "../../util/Types/ApiTypes";
+
+const testFoodOptions: FoodOption[] = [
+    {
+        imgSrc: require("../../images/burger.jpg"),
+        title: "Burger",
+        selected: false,
+        width: 200,
+        height: 100,
+        x: 0,
+        y: 0,
+    },
+    {
+        imgSrc: require("../../images/burger.jpg"),
+        title: "Burger",
+        selected: false,
+        width: 200,
+        height: 100,
+        x: 0,
+        y: 0,
+    },
+    {
+        imgSrc: require("../../images/burger.jpg"),
+        title: "Burger",
+        selected: false,
+        width: 200,
+        height: 100,
+        x: 0,
+        y: 0,
+    },
+    {
+        imgSrc: require("../../images/burger.jpg"),
+        title: "Burger",
+        selected: false,
+        width: 200,
+        height: 100,
+        x: 0,
+        y: 0,
+    },
+]
 
 const testMenus: Menu[] = [
     {
@@ -48,7 +89,6 @@ const testMenus: Menu[] = [
 
 function ExamplePage() {
     const [value, setValue] = React.useState(0);
-
     return (
         <>
             <CustomButton onClick={() => console.log("test")}>Test</CustomButton>
@@ -58,6 +98,8 @@ function ExamplePage() {
             </div>
             <MenuContainer onClick={() => {
             }} menus={testMenus}/>
+            <FoodOptionsContainer onClick={() => {
+            }} foodOptions={testFoodOptions}/>
         </>
     )
 }
