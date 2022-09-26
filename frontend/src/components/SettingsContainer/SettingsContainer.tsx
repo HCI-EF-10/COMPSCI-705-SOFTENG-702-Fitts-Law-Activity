@@ -10,7 +10,7 @@ function SettingsContainer() {
   const [yPos, setYPos] = React.useState(0);
   const [score, setScore] = React.useState(0);
   const [clicks, setClicks] = React.useState(0);
-  const [errors, setErrors] = React.useState();
+  const [errors, setErrors] = React.useState(0);
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate("/");
