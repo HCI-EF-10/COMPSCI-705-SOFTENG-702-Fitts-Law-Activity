@@ -17,7 +17,7 @@ function FoodOptionsContainer({ foodOptions, onClick }: Props) {
   };
 
   return (
-    <Grid container sx={{ height: "100vh", width: "600px", backgroundColor: 'white' }}>
+    <Grid item container sx={{display: "flex", flex: 3, backgroundColor: 'white' }}>
       <Grid container
         direction="column"
         padding="15px">

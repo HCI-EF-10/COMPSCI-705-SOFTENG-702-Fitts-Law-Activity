@@ -21,7 +21,7 @@ function SettingsContainer({ menu }: Props) {
   };
 
   return (
-    <Grid container sx={{ height: "100vh", width: "520px", backgroundColor: '#d4edfc' }}>
+    <Grid item container sx={{ display:"flex", flex: 2, backgroundColor: '#d4edfc' }}>
       <Grid container
         direction="column"
         padding="15px">

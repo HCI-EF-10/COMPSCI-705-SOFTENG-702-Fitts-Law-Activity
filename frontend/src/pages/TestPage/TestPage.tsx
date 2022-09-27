@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, Grid } from "@mui/material";
+import {Box, Grid} from "@mui/material";
 import SettingsContainer from "../../components/SettingsContainer/SettingsContainer";
 import MenuContainer from "../../components/MenuContainer/MenuContainer";
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
-import { FoodOption } from "../../util/Types/ApiTypes";
+import {FoodOption} from "../../util/Types/ApiTypes";
 
 const testFoodOptions: FoodOption[] = [
   {
@@ -51,32 +51,11 @@ function TestPage() {
     <>
       <Grid
         container
-        direction="row"
-        justifyContent="center"
-        alignItems="stretch"
-        >
-        <Box sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}>
-          <SettingsContainer menu={menu}></SettingsContainer>
-        </Box>
-        <Box sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}>
-          <MenuContainer handleClick={setMenu}></MenuContainer>
-        </Box>
-        <Box sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}>
+      >
+        <SettingsContainer menu={menu}></SettingsContainer>
+        <MenuContainer handleClick={setMenu}></MenuContainer>
         <FoodOptionsContainer onClick={() => {
         }} foodOptions={testFoodOptions}/>
-        </Box>
       </Grid>
     </>
   )
