@@ -20,6 +20,11 @@ function FoodOptionsContainer({foodOptions, onClick, xSpacing, ySpacing, height,
   };
   return (
     <Grid columnSpacing={xSpacing} rowSpacing={ySpacing} container>
+      <Grid container
+        direction="column"
+        padding="15px">
+        <h1 style={{textAlign: "center"}}>Food options</h1>
+      </Grid>
       {foodOptions.map((foodOption, index) => (
         <FoodOptionsItem
           height={height}
@@ -28,8 +33,7 @@ function FoodOptionsContainer({foodOptions, onClick, xSpacing, ySpacing, height,
           imgSrc={foodOption.imgSrc}
           title={foodOption.title}
           selected={foodOption.selected}
-          onClick={onClick}
-        />
+          onClick={onClick}/>
       ))}
       <Grid container
         direction="column"

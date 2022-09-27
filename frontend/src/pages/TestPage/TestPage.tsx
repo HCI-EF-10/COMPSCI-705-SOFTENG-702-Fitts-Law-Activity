@@ -10,37 +10,21 @@ const testFoodOptions: FoodOption[] = [
     imgSrc: require("../../images/burger.jpg"),
     title: "Burger",
     selected: false,
-    width: 200,
-    height: 100,
-    x: 0,
-    y: 0,
   },
   {
     imgSrc: require("../../images/burger.jpg"),
     title: "Burger",
     selected: false,
-    width: 200,
-    height: 100,
-    x: 0,
-    y: 0,
   },
   {
     imgSrc: require("../../images/burger.jpg"),
     title: "Burger",
     selected: false,
-    width: 200,
-    height: 100,
-    x: 0,
-    y: 0,
   },
   {
     imgSrc: require("../../images/burger.jpg"),
     title: "Burger",
     selected: false,
-    width: 200,
-    height: 100,
-    x: 0,
-    y: 0,
   },
 ]
 
@@ -55,7 +39,7 @@ function TestPage() {
         <SettingsContainer menu={menu}></SettingsContainer>
         <MenuContainer handleClick={setMenu}></MenuContainer>
         <FoodOptionsContainer onClick={() => {
-        }} foodOptions={testFoodOptions}/>
+        } } foodOptions={testFoodOptions} xSpacing={-100} ySpacing={0} height={50} width={70}/>
       </Grid>
     </>
   )
