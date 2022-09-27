@@ -3,7 +3,11 @@ import { Grid, Button } from "@mui/material";
 import MenuSlider from "../../components/MenuSlider/MenuSlider";
 import { useNavigate } from "react-router-dom";
 
-function SettingsContainer() {
+interface Props {
+  menu: number;
+}
+
+function SettingsContainer({ menu }: Props) {
   const [height, setHeight] = React.useState(0);
   const [width, setWidth] = React.useState(0);
   const [xPos, setXPos] = React.useState(0);
@@ -22,7 +26,7 @@ function SettingsContainer() {
         direction="column"
         padding="15px">
         <h1 style={{ textAlign: "center" }}>Settings</h1>
-        <h3>Selected component: Menu item 1</h3>
+        <h3>Selected component: Menu { menu } item</h3>
         <h4>Component Properties</h4>
       </Grid>
       <Grid

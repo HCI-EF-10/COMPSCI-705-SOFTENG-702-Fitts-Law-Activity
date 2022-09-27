@@ -45,6 +45,7 @@ const testFoodOptions: FoodOption[] = [
 ]
 
 function TestPage() {
+  const [menu, setMenu] = React.useState(1);
 
   return (
     <>
@@ -59,14 +60,14 @@ function TestPage() {
           flexDirection: "column",
           alignItems: "center",
         }}>
-          <SettingsContainer></SettingsContainer>
+          <SettingsContainer menu={menu}></SettingsContainer>
         </Box>
         <Box sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}>
-          <MenuContainer></MenuContainer>
+          <MenuContainer handleClick={setMenu}></MenuContainer>
         </Box>
         <Box sx={{
           display: "flex",
