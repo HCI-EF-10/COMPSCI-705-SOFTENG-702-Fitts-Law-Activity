@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Grid} from "@mui/material";
+import {Grid} from "@mui/material";
 import SettingsContainer from "../../components/SettingsContainer/SettingsContainer";
 import MenuContainer from "../../components/MenuContainer/MenuContainer";
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
