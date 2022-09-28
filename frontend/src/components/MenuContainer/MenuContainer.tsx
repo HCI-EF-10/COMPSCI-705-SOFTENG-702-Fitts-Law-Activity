@@ -1,5 +1,12 @@
 import React from "react";
-import { Grid, Button, Box, styled, ButtonProps } from "@mui/material";
+import {
+  Grid,
+  Button,
+  Box,
+  styled,
+  ButtonProps,
+  Typography,
+} from "@mui/material";
 
 type Props = {
   rowSpacing: number;
@@ -10,7 +17,7 @@ type Props = {
 
 const MenuButton = styled((props: ButtonProps) => (
   <Button variant="outlined" {...props} />
-))();
+))({});
 
 function MenuContainer({
   rowSpacing,
@@ -25,10 +32,11 @@ function MenuContainer({
         flex: 1,
         backgroundColor: "#fec795",
         flexDirection: "column",
+        paddingTop: "2rem",
         alignItems: "center",
       }}
     >
-      <h1 style={{ textAlign: "center" }}>Menus</h1>
+      <Typography variant="h2">Menus</Typography>
       <Grid
         flex={1}
         container
@@ -40,7 +48,7 @@ function MenuContainer({
         {[...Array(4)]
           .map((_, index) => index + 1)
           .map((index) => (
-            <Grid item>
+            <Grid item key={`menu-button-${index}`}>
               <MenuButton
                 id={`${index}`}
                 onClick={() => handleClick(index)}
