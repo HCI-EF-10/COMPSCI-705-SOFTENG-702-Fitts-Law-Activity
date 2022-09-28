@@ -1,26 +1,60 @@
-import React from 'react';
-import {Grid, Button} from "@mui/material";
+import React from "react";
+import { Grid, Button, Box, styled, ButtonProps } from "@mui/material";
 
-function MenuContainer(props: any) {
-  const buttonStyle = {
-    maxWidth: '200px', maxHeight: '100px', minWidth: '200px', minHeight: '100px'
-  };
+type Props = {
+  rowSpacing: number;
+  buttonWidth: number;
+  buttonHeight: number;
+  handleClick: (index: number) => void;
+};
+
+const MenuButton = styled((props: ButtonProps) => (
+  <Button variant="outlined" {...props} />
+))();
+
+function MenuContainer({
+  rowSpacing,
+  buttonWidth,
+  buttonHeight,
+  handleClick,
+}: Props) {
   return (
-    <Grid item container sx={{display: "flex", flex: 1, backgroundColor: '#fec795'}}>
+    <Box
+      sx={{
+        display: "flex",
+        flex: 1,
+        backgroundColor: "#fec795",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <h1 style={{ textAlign: "center" }}>Menus</h1>
       <Grid
+        flex={1}
         container
         direction="column"
-        justifyContent="space-between"
+        justifyContent="center"
         alignItems="center"
-        padding="15px"
+        rowSpacing={`${rowSpacing * 0.01 * 4}rem`}
       >
-        <h1 style={{textAlign: "center"}}>Menus</h1>
-        <Button id="1" style={buttonStyle} variant="outlined" onClick={() => props.handleClick(1)}>MENU 1</Button>
-        <Button id="2" style={buttonStyle} variant="outlined" onClick={() => props.handleClick(2)}>MENU 2</Button>
-        <Button id="3" style={buttonStyle} variant="outlined" onClick={() => props.handleClick(3)}>MENU 3</Button>
-        <Button id="4" style={buttonStyle} variant="outlined" onClick={() => props.handleClick(4)}>MENU 4</Button>
+        {[...Array(4)]
+          .map((_, index) => index + 1)
+          .map((index) => (
+            <Grid item>
+              <MenuButton
+                id={`${index}`}
+                onClick={() => handleClick(index)}
+                sx={{
+                  width: `calc(${buttonWidth * 0.01 * 10}rem + 5rem)`,
+                  height: `calc(${buttonHeight * 0.01 * 10}rem)`,
+                }}
+              >
+                MENU {index}
+              </MenuButton>
+            </Grid>
+          ))}
       </Grid>
-    </Grid>
+    </Box>
   );
 }
 
