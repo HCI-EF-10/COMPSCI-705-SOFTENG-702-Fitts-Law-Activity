@@ -40,7 +40,7 @@ function TestPage() {
       }}
     >
       <SettingsContainer menu={menu} />
-      <MenuContainer handleClick={setMenu} />
+      {/* <MenuContainer handleClick={setMenu} /> */}
       <FoodOptionsContainer
         onClick={() => {}}
         foodOptions={testFoodOptions}

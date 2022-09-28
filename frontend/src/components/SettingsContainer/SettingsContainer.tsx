@@ -40,6 +40,7 @@ function SettingsContainer({ menu }: Props) {
         backgroundColor: "#d4edfc",
         paddingTop: "2rem",
         paddingX: "1rem",
+        height:'100vh'
       }}
     >
       <Box display="flex" flexDirection="row">
@@ -111,11 +112,12 @@ function SettingsContainer({ menu }: Props) {
         <Typography variant="h3">Number of clicks: {clicks}</Typography>
         <Typography variant="h3">Errors: {errors}</Typography>
       </Box>
+
       <Grid
         container
         justifyContent="space-evenly"
-        alignItems="center"
         padding="15px"
+          
       >
         {isEditMode ? (
           <Button variant="contained" onClick={setViewMode}>

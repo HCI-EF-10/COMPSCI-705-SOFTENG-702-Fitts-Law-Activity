@@ -5,6 +5,7 @@ import HoverIcon from '../../components/HoverIcon/HoverIcon';
 import HelpIcon from '@mui/icons-material/Help';
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
 import { FoodOption } from "../../util/Types/ApiTypes";
+import SettingsContainer from '../../components/SettingsContainer/SettingsContainer';
 
 const testFoodOptions: FoodOption[] = [
   {
@@ -37,18 +38,24 @@ function ExamplePage() {
 
   return (
     <>
-      <CustomButton onClick={() => console.log("test")}>Test</CustomButton>
-      <div style={{width: "60%"}}>
-        <MenuSlider min={0} max={10} value={xSpacing} onChange={(value) => setXSpacing(value)} menuText="X spacing"/>
-        <MenuSlider min={0} max={10} value={ySpacing} onChange={(value) => setYSpacing(value)} menuText="Y spacing"/>
-        <MenuSlider min={0} max={100} value={width} onChange={(value) => setWidth(value)} menuText="Width"/>
-        <MenuSlider min={0} max={100} value={height} onChange={(value) => setHeight(value)} menuText="Height"/>
-        <HoverIcon icon={<HelpIcon/>} onHover={<div>test</div>}/>
+      <div style={{display: 'flex', height:'100vh'}}>
+        <div style={{width:'25%', height:'100vh'}}>
+          <SettingsContainer menu={0} />
+        </div>
+        
+        {/* <CustomButton onClick={() => console.log("test")}>Test</CustomButton> */}
+        {/* <div style={{ width: "60%" }}>
+          <MenuSlider min={0} max={10} value={xSpacing} onChange={(value) => setXSpacing(value)} menuText="X spacing" />
+          <MenuSlider min={0} max={10} value={ySpacing} onChange={(value) => setYSpacing(value)} menuText="Y spacing" />
+          <MenuSlider min={0} max={100} value={width} onChange={(value) => setWidth(value)} menuText="Width" />
+          <MenuSlider min={0} max={100} value={height} onChange={(value) => setHeight(value)} menuText="Height" />
+        </div> */}
+        <div style={{ display: 'flex', width: "50%",  justifyContent:'center'}}>
+          <FoodOptionsContainer width={width} height={height} xSpacing={xSpacing} ySpacing={ySpacing} onClick={() => {
+          }} foodOptions={testFoodOptions} />
+        </div>
       </div>
-      <div style={{width: "50%"}}>
-        <FoodOptionsContainer width={width} height={height} xSpacing={xSpacing} ySpacing={ySpacing} onClick={() => {
-        }} foodOptions={testFoodOptions}/>
-      </div>
+
     </>
   )
 }

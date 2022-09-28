@@ -9,7 +9,7 @@ function Routes() {
     <Switch>
       <Route path="/" element={<HomePage />} />
       <Route path="demo" element={<ExamplePage />} />
-      <Route path="test" element={<TestPage />} />
+      {/* <Route path="test" element={<TestPage />} /> */}
     </Switch>
   );
 }
