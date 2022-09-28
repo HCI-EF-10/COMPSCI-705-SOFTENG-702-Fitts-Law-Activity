@@ -1,13 +1,4 @@
-import React from 'react';
-import { styled } from "@mui/material/styles";
-import { Slider, Typography, typographyClasses } from "@mui/material";
-
-const StyledTypography = styled(Typography)(({ theme }) => ({
-  [`&.${typographyClasses.root}`]: {
-    fontSize: 20,
-  },
-}));
-
+import { Slider, Typography } from "@mui/material";
 
 interface Props {
   min: number;
@@ -17,18 +8,26 @@ interface Props {
   menuText: string;
 }
 
-function MenuSlider({min, max, value, onChange, menuText}: Props) {
-
-  const handleChange = (event: Event, newValue: number | number[]) => {
+function MenuSlider({ min, max, value, onChange, menuText }: Props) {
+  const handleChange = (e: Event, newValue: number | number[]) => {
     onChange(newValue as number);
   };
 
   return (
-    <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
-      <StyledTypography>{menuText}</StyledTypography>
-      <Slider sx={{width: "80%"}} value={value} onChange={handleChange} min={min} max={max}/>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        margin: "1rem 0px",
+      }}
+    >
+      <Typography variant="caption" minWidth="6rem">
+        {menuText}
+      </Typography>
+      <Slider value={value} onChange={handleChange} min={min} max={max} />
     </div>
-  )
+  );
 }
 
 export default MenuSlider;
