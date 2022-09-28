@@ -1,8 +1,8 @@
 import React from 'react';
 import CustomButton from "../../components/CustomButton/CustomButton";
 import MenuSlider from "../../components/MenuSlider/MenuSlider";
-import HoverIcon from '../../components/HoverIcon/HoverIcon';
 import HelpIcon from '@mui/icons-material/Help';
+import HTMLTooltip from '../../components/HTMLTooltip/HTMLTooltip';
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
 import { FoodOption } from "../../util/Types/ApiTypes";
 import SettingsContainer from '../../components/SettingsContainer/SettingsContainer';
@@ -53,6 +53,11 @@ function ExamplePage() {
         <div style={{ display: 'flex', width: "50%",  justifyContent:'center'}}>
           <FoodOptionsContainer width={width} height={height} xSpacing={xSpacing} ySpacing={ySpacing} onClick={() => {
           }} foodOptions={testFoodOptions} />
+          <HTMLTooltip button={<HelpIcon />} htmlFrag={
+            <div>
+              <h1>Testing the hover functionality</h1>
+              Switching over from custom hover to MUI tooltips wrapper for a cleaner look with less styling
+            </div>} />
         </div>
       </div>
 
