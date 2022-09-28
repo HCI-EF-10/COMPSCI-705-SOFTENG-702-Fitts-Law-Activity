@@ -6,6 +6,8 @@ import HTMLTooltip from '../../components/HTMLTooltip/HTMLTooltip';
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
 import { FoodOption } from "../../util/Types/ApiTypes";
 import InfoIcon from '@mui/icons-material/Info';
+import { Alert, Collapse, Box, IconButton, Button } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close'
 
 const testFoodOptions: FoodOption[] = [
   {
