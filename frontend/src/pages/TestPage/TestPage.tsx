@@ -1,9 +1,9 @@
-import React from 'react';
-import {Grid} from "@mui/material";
+import React from "react";
+import { Box, Grid } from "@mui/material";
 import SettingsContainer from "../../components/SettingsContainer/SettingsContainer";
 import MenuContainer from "../../components/MenuContainer/MenuContainer";
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
-import {FoodOption} from "../../util/Types/ApiTypes";
+import { FoodOption } from "../../util/Types/ApiTypes";
 
 const testFoodOptions: FoodOption[] = [
   {
@@ -26,23 +26,31 @@ const testFoodOptions: FoodOption[] = [
     title: "Burger",
     selected: false,
   },
-]
+];
 
 function TestPage() {
   const [menu, setMenu] = React.useState(1);
 
   return (
-    <>
-      <Grid
-        container
-      >
-        <SettingsContainer menu={menu}></SettingsContainer>
-        <MenuContainer handleClick={setMenu}></MenuContainer>
-        <FoodOptionsContainer onClick={() => {
-        } } foodOptions={testFoodOptions} xSpacing={-100} ySpacing={0} height={50} width={70}/>
-      </Grid>
-    </>
-  )
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        height: "100vh",
+      }}
+    >
+      <SettingsContainer menu={menu} />
+      <MenuContainer handleClick={setMenu} />
+      <FoodOptionsContainer
+        onClick={() => {}}
+        foodOptions={testFoodOptions}
+        xSpacing={0}
+        ySpacing={0}
+        height={50}
+        width={70}
+      />
+    </Box>
+  );
 }
 
 export default TestPage;
