@@ -40,14 +40,19 @@ function TestPage() {
       }}
     >
       <SettingsContainer menu={menu} />
-      {/* <MenuContainer handleClick={setMenu} /> */}
+      <MenuContainer
+        handleClick={setMenu}
+        rowSpacing={100}
+        buttonWidth={100}
+        buttonHeight={100}
+      />
       <FoodOptionsContainer
         onClick={() => {}}
         foodOptions={testFoodOptions}
-        xSpacing={0}
-        ySpacing={0}
-        height={50}
-        width={70}
+        xSpacing={100}
+        ySpacing={100}
+        height={100}
+        width={100}
       />
     </Box>
   );

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Grid,
   Button,
@@ -43,7 +42,7 @@ function MenuContainer({
         direction="column"
         justifyContent="center"
         alignItems="center"
-        rowSpacing={`${rowSpacing * 0.01 * 4}rem`}
+        rowSpacing={`${rowSpacing * 0.12}vh`}
       >
         {[...Array(4)]
           .map((_, index) => index + 1)
@@ -53,8 +52,8 @@ function MenuContainer({
                 id={`${index}`}
                 onClick={() => handleClick(index)}
                 sx={{
-                  width: `calc(${buttonWidth * 0.01 * 10}rem + 5rem)`,
-                  height: `calc(${buttonHeight * 0.01 * 10}rem)`,
+                  width: `calc(${buttonWidth * 0.15}vw + 5rem)`,
+                  height: `${buttonHeight * 0.12}vh`,
                 }}
               >
                 MENU {index}

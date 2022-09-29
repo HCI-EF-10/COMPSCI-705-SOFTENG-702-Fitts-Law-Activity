@@ -36,11 +36,11 @@ function SettingsContainer({ menu }: Props) {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        flex: 1.5,
+        flex: 1,
         backgroundColor: "#d4edfc",
         paddingTop: "2rem",
         paddingX: "1rem",
-        height:'100vh'
+        height: "100vh",
       }}
     >
       <Box display="flex" flexDirection="row">
@@ -113,12 +113,7 @@ function SettingsContainer({ menu }: Props) {
         <Typography variant="h3">Errors: {errors}</Typography>
       </Box>
 
-      <Grid
-        container
-        justifyContent="space-evenly"
-        padding="15px"
-          
-      >
+      <Grid container justifyContent="space-evenly" padding="15px">
         {isEditMode ? (
           <Button variant="contained" onClick={setViewMode}>
             EDIT MODE
