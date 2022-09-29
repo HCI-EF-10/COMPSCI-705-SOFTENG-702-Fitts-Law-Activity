@@ -3,6 +3,7 @@ import { Grid, Button, Box, Typography, IconButton } from "@mui/material";
 import MenuSlider from "../../components/MenuSlider/MenuSlider";
 import { useNavigate } from "react-router-dom";
 import HelpIcon from "@mui/icons-material/Help";
+import HTMLTooltip from "../HTMLTooltip/HTMLTooltip";
 interface Props {
   menu: number;
 }
@@ -45,9 +46,16 @@ function SettingsContainer({ menu }: Props) {
     >
       <Box display="flex" flexDirection="row">
         <Typography variant="h2">Settings</Typography>
-        <IconButton>
-          <HelpIcon fontSize="large" />
-        </IconButton>
+        <HTMLTooltip
+          button={<HelpIcon />}
+          htmlFrag={
+            <div>
+              <h1>Testing the hover functionality</h1>
+              Switching over from custom hover to MUI tooltips wrapper for a
+              cleaner look with less styling
+            </div>
+          }
+        />
       </Box>
       <Typography variant="subtitle1" marginTop="0.25rem">
         Selected component: Menu {menu} item
