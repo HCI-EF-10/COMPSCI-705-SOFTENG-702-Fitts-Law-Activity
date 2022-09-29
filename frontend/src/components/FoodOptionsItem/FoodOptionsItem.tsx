@@ -1,39 +1,61 @@
-import React from 'react';
-import { Grid, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 interface Props {
   imgSrc: string;
   title: string;
   selected: boolean;
+  height: string;
+  width: string;
   onClick: () => void;
-  height: number;
-  width: number;
+  marginRight?: string;
 }
 
-function FoodOptionsItem({imgSrc, title, selected, onClick, height, width}: Props) {
-
+function FoodOptionsItem({
+  imgSrc,
+  title,
+  selected,
+  height,
+  width,
+  onClick,
+  marginRight,
+}: Props) {
   return (
-    <Grid item xs={6} justifyContent="center" alignItems="center" display="flex" flexDirection="column">
-      <div
+    <Box
+      sx={{
+        margin: "auto",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        marginRight,
+      }}
+    >
+      <Button
         style={{
-          height: `${height}%`,
-          width: `${width}%`,
+          width,
+          height,
           border: `2px solid ${selected ? "#FFE600" : "#00109B"}`,
           boxShadow: "0 0 10px 0",
           borderRadius: "10px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          padding: "3%"
+          margin: "auto",
         }}
-        onClick={onClick}>
-        <img style={{
-          maxWidth: "100%",
-          maxHeight: "100%",
-        }} src={imgSrc}/>
-      </div>
-      <Typography variant="h6" style={{textAlign: "center", marginTop: "10px"}}>{title}</Typography>
-    </Grid>
+        onClick={onClick}
+      >
+        <img
+          style={{
+            maxWidth: "100%",
+            maxHeight: "100%",
+          }}
+          src={imgSrc}
+        />
+      </Button>
+
+      <Typography variant="h6" marginY="1rem">
+        {title}
+      </Typography>
+    </Box>
   );
 }
 
