@@ -20,7 +20,7 @@ function FoodOptionsContainer({
   onClick,
 }: Props) {
   const widthUnit = 0.195;
-  const heightUnit = 0.2;
+  const heightUnit = 0.185;
   const buttonWidth = `${width * widthUnit}vw`;
   const buttonHeight = `calc(${height * heightUnit}vh + 2rem)`;
   const marginRight = `${xSpacing * widthUnit}vw`;
