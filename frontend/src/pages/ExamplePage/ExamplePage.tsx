@@ -6,6 +6,12 @@ import HTMLTooltip from '../../components/HTMLTooltip/HTMLTooltip';
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
 import { FoodOption } from "../../util/Types/ApiTypes";
 import SettingsContainer from '../../components/SettingsContainer/SettingsContainer';
+import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import { IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import InfoIcon from '@mui/icons-material/Info';
 
 const testFoodOptions: FoodOption[] = [
   {
@@ -30,17 +36,51 @@ const testFoodOptions: FoodOption[] = [
   },
 ]
 
+
 function ExamplePage() {
   const [xSpacing, setXSpacing] = React.useState(0);
   const [ySpacing, setYSpacing] = React.useState(0);
   const [width, setWidth] = React.useState(0);
   const [height, setHeight] = React.useState(0);
+  const [open, setOpen] = React.useState(false);
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   return (
     <>
       <div style={{display: 'flex', height:'100vh'}}>
         <div style={{width:'25%', height:'100vh'}}>
-          <SettingsContainer menu={0} />
+        <Button variant="outlined" onClick= {handleClick}>
+          <InfoIcon></InfoIcon>
+        </Button>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert severity='info'
+          action={
+            <IconButton
+              aria-label="close"
+              color = 'info'
+              size="small"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+             <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+          sx={{ mb: 2 }}
+        >
+          In this part of the activity, try to move the sliders for each of the menu items. 
+        </Alert>
+          </Snackbar>
+        <SettingsContainer menu={0} />
         </div>
         
         {/* <CustomButton onClick={() => console.log("test")}>Test</CustomButton> */}
