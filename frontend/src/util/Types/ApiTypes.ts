@@ -1,9 +1,9 @@
 export type FoodOption = {
   imgSrc: string;
   title: string;
+  selected: boolean;
   width: number;
   height: number;
-  selected: boolean;
   x: number;
   y: number;
 }
