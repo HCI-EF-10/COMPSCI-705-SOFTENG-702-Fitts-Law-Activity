@@ -53,45 +53,6 @@ const testFoodOptions: FoodOption[] = [
     },
 ]
 
-const testMenus: Menu[] = [
-    {
-        imgSrc: require("../../images/menu.jpg"),
-        title: "Menu",
-        selected: false,
-        width: 200,
-        height: 100,
-        x: 0,
-        y: 0,
-    },
-    {
-        imgSrc: require("../../images/menu.jpg"),
-        title: "Menu",
-        selected: false,
-        width: 200,
-        height: 100,
-        x: 0,
-        y: 0,
-    },
-    {
-        imgSrc: require("../../images/menu.jpg"),
-        title: "Menu",
-        selected: false,
-        width: 200,
-        height: 100,
-        x: 0,
-        y: 0,
-    },
-    {
-        imgSrc: require("../../images/menu.jpg"),
-        title: "Menu",
-        selected: false,
-        width: 200,
-        height: 100,
-        x: 0,
-        y: 0,
-    },
-]
-
 
 function ExamplePage() {
   const [xSpacing, setXSpacing] = React.useState(0);

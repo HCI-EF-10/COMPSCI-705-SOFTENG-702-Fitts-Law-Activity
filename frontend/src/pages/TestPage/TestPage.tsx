@@ -7,79 +7,75 @@ import { FoodOption, Menu } from "../../util/Types/ApiTypes";
 
 const testFoodOptions: FoodOption[] = [
   {
-      imgSrc: require("../../images/burger.jpg"),
-      title: "Burger",
-      selected: false,
-      width: 200,
-      height: 100,
-      x: 0,
-      y: 0,
+    imgSrc: require("../../images/burger.jpg"),
+    title: "Burger",
+    selected: false,
+    width: 200,
+    height: 100,
+    x: 0,
+    y: 0,
   },
   {
-      imgSrc: require("../../images/burger.jpg"),
-      title: "Burger",
-      selected: false,
-      width: 200,
-      height: 100,
-      x: 0,
-      y: 0,
+    imgSrc: require("../../images/burger.jpg"),
+    title: "Burger",
+    selected: false,
+    width: 200,
+    height: 100,
+    x: 0,
+    y: 0,
   },
   {
-      imgSrc: require("../../images/burger.jpg"),
-      title: "Burger",
-      selected: false,
-      width: 200,
-      height: 100,
-      x: 0,
-      y: 0,
+    imgSrc: require("../../images/burger.jpg"),
+    title: "Burger",
+    selected: false,
+    width: 200,
+    height: 100,
+    x: 0,
+    y: 0,
   },
   {
-      imgSrc: require("../../images/burger.jpg"),
-      title: "Burger",
-      selected: false,
-      width: 200,
-      height: 100,
-      x: 0,
-      y: 0,
+    imgSrc: require("../../images/burger.jpg"),
+    title: "Burger",
+    selected: false,
+    width: 200,
+    height: 100,
+    x: 0,
+    y: 0,
   },
 ]
 
 const testMenus: Menu[] = [
   {
-      imgSrc: require("../../images/menu.jpg"),
-      title: "Menu",
-      selected: false,
-      width: 200,
-      height: 100,
-      x: 0,
-      y: 0,
+
+    title: "Menu",
+    width: 200,
+    height: 100,
+    x: 0,
+    y: 0,
   },
   {
-      imgSrc: require("../../images/menu.jpg"),
-      title: "Menu",
-      selected: false,
-      width: 200,
-      height: 100,
-      x: 0,
-      y: 0,
+
+    title: "Menu",
+    width: 200,
+    height: 100,
+    x: 0,
+    y: 0,
   },
   {
-      imgSrc: require("../../images/menu.jpg"),
-      title: "Menu",
-      selected: false,
-      width: 200,
-      height: 100,
-      x: 0,
-      y: 0,
+
+    title: "Menu",
+    width: 200,
+    height: 100,
+    x: 0,
+    y: 0,
   },
   {
-      imgSrc: require("../../images/menu.jpg"),
-      title: "Menu",
-      selected: false,
-      width: 200,
-      height: 100,
-      x: 0,
-      y: 0,
+
+    title: "Menu",
+    width: 200,
+    height: 100,
+    x: 0,
+    y: 0,
   },
 ]
 
@@ -96,13 +92,11 @@ function TestPage() {
     >
       <SettingsContainer menu={menu} />
       <MenuContainer
+        menus={testMenus}
         handleClick={setMenu}
-        rowSpacing={100}
-        buttonWidth={100}
-        buttonHeight={100}
-      />
+        rowSpacing={100} />
       <FoodOptionsContainer
-        onClick={() => {}}
+        onClick={() => { }}
         foodOptions={testFoodOptions}
         xSpacing={100}
         ySpacing={100}
