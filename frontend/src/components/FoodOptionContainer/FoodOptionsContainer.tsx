@@ -1,4 +1,4 @@
-import { Button, Box, Typography } from "@mui/material";
+import { Button, Box, Typography, Grid } from "@mui/material";
 import FoodOptionsItem from "../FoodOptionsItem/FoodOptionsItem";
 import { FoodOption } from "../../util/Types/ApiTypes";
 
@@ -32,59 +32,71 @@ function FoodOptionsContainer({
       display="flex"
       flexDirection="column"
       alignItems="center"
-      paddingTop="2rem"
+      padding="2rem"
     >
       <Typography variant="h2">Food Options</Typography>
 
       <Box
+        flex={3}
         display="flex"
-        flexDirection="column"
+        flexDirection="row"
         alignItems="center"
-        marginY={"auto"}
+        padding="2rem"
       >
         <Box
+          flex={3}
           display="flex"
-          flexDirection="row"
-          justifyContent="center"
-          marginBottom={marginBottom}
+          flexDirection="column"
+          alignItems="center"
+          padding="2rem"
         >
           <FoodOptionsItem
             imgSrc={foodOptions[0].imgSrc}
             title={foodOptions[0].title}
             selected={foodOptions[0].selected}
-            onClick={() => {}}
-            width={buttonWidth}
-            height={buttonHeight}
+            onClick={() => { }}
+            width={foodOptions[0].width}
+            height={foodOptions[0].height}
             marginRight={marginRight}
           />
-          <FoodOptionsItem
-            imgSrc={foodOptions[1].imgSrc}
-            title={foodOptions[1].title}
-            selected={foodOptions[1].selected}
-            onClick={() => {}}
-            width={buttonWidth}
-            height={buttonHeight}
-          />
-        </Box>
-        <Box display="flex" flexDirection="row" justifyContent="center">
           <FoodOptionsItem
             imgSrc={foodOptions[2].imgSrc}
             title={foodOptions[2].title}
             selected={foodOptions[2].selected}
-            onClick={() => {}}
-            width={buttonWidth}
-            height={buttonHeight}
+            onClick={() => { }}
+            width={foodOptions[2].width}
+            height={foodOptions[2].height}
             marginRight={marginRight}
           />
-          <FoodOptionsItem
+          </Box>
+          <Box
+            flex={3}
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            padding="2rem"
+          >
+            <FoodOptionsItem
             imgSrc={foodOptions[3].imgSrc}
             title={foodOptions[3].title}
             selected={foodOptions[3].selected}
-            onClick={() => {}}
-            width={buttonWidth}
-            height={buttonHeight}
+            onClick={() => { }}
+            width={foodOptions[3].width}
+            height={foodOptions[3].height}
+            marginRight={marginRight}
+          />
+
+          <FoodOptionsItem
+            imgSrc={foodOptions[1].imgSrc}
+            title={foodOptions[1].title}
+            selected={foodOptions[1].selected}
+            onClick={() => { }}
+            width={foodOptions[1].width}
+            height={foodOptions[1].height}
+            marginRight={marginRight}
           />
         </Box>
+
       </Box>
 
       <Button

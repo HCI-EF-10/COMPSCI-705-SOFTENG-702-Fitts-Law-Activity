@@ -6,9 +6,13 @@ import HelpIcon from "@mui/icons-material/Help";
 import HTMLTooltip from "../HTMLTooltip/HTMLTooltip";
 interface Props {
   menu: number;
+  setWidthArray: Array<any>;
+  setHeightArray: Array<any>;
+  widthArray: Array<any>;
+  heightArray: Array<any>;
 }
 
-function SettingsContainer({ menu }: Props) {
+function SettingsContainer({ menu, setWidthArray, setHeightArray, widthArray, heightArray }: Props) {
   const [height, setHeight] = React.useState(0);
   const [width, setWidth] = React.useState(0);
   const [xPos, setXPos] = React.useState(0);
@@ -81,15 +85,15 @@ function SettingsContainer({ menu }: Props) {
           <MenuSlider
             min={0}
             max={100}
-            value={width}
-            onChange={(width) => setWidth(width)}
+            value={widthArray[menu]}
+            onChange={(width) => setWidthArray[menu](width)}
             menuText="Width"
           />
           <MenuSlider
             min={0}
             max={100}
-            value={height}
-            onChange={(height) => setHeight(height)}
+            value={heightArray[menu]}
+            onChange={(height) => setHeightArray[menu](height)}
             menuText="Height"
           />
           <MenuSlider

@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+
 export type FoodOption = {
   imgSrc: string;
   title: string;

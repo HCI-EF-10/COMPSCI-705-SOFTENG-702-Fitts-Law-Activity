@@ -4,8 +4,8 @@ interface Props {
   imgSrc: string;
   title: string;
   selected: boolean;
-  height: string;
-  width: string;
+  height: number;
+  width: number;
   onClick: () => void;
   marginRight?: string;
 }
@@ -19,6 +19,10 @@ function FoodOptionsItem({
   onClick,
   marginRight,
 }: Props) {
+
+  const widthUnit = 0.195;
+  const heightUnit = 0.185;
+
   return (
     <Box
       sx={{
@@ -31,8 +35,8 @@ function FoodOptionsItem({
     >
       <Button
         style={{
-          width,
-          height,
+          width: `${width * widthUnit}vw`,
+          height: `calc(${height * heightUnit}vh + 2rem)`,
           border: `2px solid ${selected ? "#FFE600" : "#00109B"}`,
           boxShadow: "0 0 10px 0",
           borderRadius: "10px",

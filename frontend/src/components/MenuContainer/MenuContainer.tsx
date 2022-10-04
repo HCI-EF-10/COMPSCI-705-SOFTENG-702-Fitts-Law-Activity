@@ -48,14 +48,14 @@ function MenuContainer({
              <div
             style={{ padding: "20px" }}>
                 <MenuButton
-                id={`${index}`}
-                onClick={() => handleClick(index)}
+                id={`${index + 1}`}
+                onClick={() => handleClick(index + 1)}
                 sx={{
                     width: `calc(${menu.width * 0.15}vw + 5rem)`,
                     height: `${menu.height * 0.12}vh`,
                 }}
             >
-                {menu.title + " " + index}
+                {menu.title + " " + (index + 1)}
             </MenuButton>
             </div>
                 </Grid>

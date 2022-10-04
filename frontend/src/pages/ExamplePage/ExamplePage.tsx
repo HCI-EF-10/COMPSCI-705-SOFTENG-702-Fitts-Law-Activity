@@ -14,44 +14,44 @@ import { IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
 
-const testFoodOptions: FoodOption[] = [
-    {
-        imgSrc: require("../../images/burger.jpg"),
-        title: "Burger",
-        selected: false,
-        width: 200,
-        height: 100,
-        x: 0,
-        y: 0,
-    },
-    {
-        imgSrc: require("../../images/burger.jpg"),
-        title: "Burger",
-        selected: false,
-        width: 200,
-        height: 100,
-        x: 0,
-        y: 0,
-    },
-    {
-        imgSrc: require("../../images/burger.jpg"),
-        title: "Burger",
-        selected: false,
-        width: 200,
-        height: 100,
-        x: 0,
-        y: 0,
-    },
-    {
-        imgSrc: require("../../images/burger.jpg"),
-        title: "Burger",
-        selected: false,
-        width: 200,
-        height: 100,
-        x: 0,
-        y: 0,
-    },
-]
+// const testFoodOptions: FoodOption[] = [
+//     {
+//         imgSrc: require("../../images/burger.jpg"),
+//         title: "Burger",
+//         selected: false,
+//         width: 200,
+//         height: 100,
+//         x: 0,
+//         y: 0,
+//     },
+//     {
+//         imgSrc: require("../../images/burger.jpg"),
+//         title: "Burger",
+//         selected: false,
+//         width: 200,
+//         height: 100,
+//         x: 0,
+//         y: 0,
+//     },
+//     {
+//         imgSrc: require("../../images/burger.jpg"),
+//         title: "Burger",
+//         selected: false,
+//         width: 200,
+//         height: 100,
+//         x: 0,
+//         y: 0,
+//     },
+//     {
+//         imgSrc: require("../../images/burger.jpg"),
+//         title: "Burger",
+//         selected: false,
+//         width: 200,
+//         height: 100,
+//         x: 0,
+//         y: 0,
+//     },
+// ]
 
 
 function ExamplePage() {
@@ -97,7 +97,7 @@ function ExamplePage() {
           In this part of the activity, try to move the sliders for each of the menu items. 
         </Alert>
           </Snackbar>
-        <SettingsContainer menu={0} />
+        {/* <SettingsContainer menu={0} /> */}
         </div>
         
         {/* <CustomButton onClick={() => console.log("test")}>Test</CustomButton> */}
@@ -108,8 +108,8 @@ function ExamplePage() {
           <MenuSlider min={0} max={100} value={height} onChange={(value) => setHeight(value)} menuText="Height" />
         </div> */}
         <div style={{ display: 'flex', width: "50%",  justifyContent:'center'}}>
-          <FoodOptionsContainer width={width} height={height} xSpacing={xSpacing} ySpacing={ySpacing} onClick={() => {
-          }} foodOptions={testFoodOptions} />
+          {/* <FoodOptionsContainer width={width} height={height} xSpacing={xSpacing} ySpacing={ySpacing} onClick={() => {
+          }} foodOptions={testFoodOptions} /> */}
           <HTMLTooltip button={<HelpIcon />} htmlFrag={
             <div>
               <h1>Testing the hover functionality</h1>
