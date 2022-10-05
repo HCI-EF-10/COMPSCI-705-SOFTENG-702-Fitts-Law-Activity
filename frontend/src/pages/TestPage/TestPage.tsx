@@ -30,6 +30,11 @@ const testFoodOptions: FoodOption[] = [
 
 function TestPage() {
   const [menu, setMenu] = React.useState(1);
+  const [foodWidth, setFoodWidth] = React.useState(0);
+  const [foodHeight, setFoodHeight] = React.useState(0);
+  const [foodXSpacing, setFoodXSpacing] = React.useState(0);
+  const [foodYSpacing, setFoodYSpacing] = React.useState(0);
+
 
   return (
     <Box
@@ -39,20 +44,23 @@ function TestPage() {
         height: "100vh",
       }}
     >
-      <SettingsContainer menu={menu} />
+      <SettingsContainer menu={menu} width={foodWidth} height={foodHeight} xSpacing={foodXSpacing} ySpacing={foodYSpacing}
+        setWidth={setFoodWidth} setHeight={setFoodHeight} setXSpacing={setFoodXSpacing} setYSpacing={setFoodYSpacing} />
+
       <MenuContainer
         handleClick={setMenu}
         rowSpacing={100}
         buttonWidth={100}
         buttonHeight={100}
       />
+      
       <FoodOptionsContainer
-        onClick={() => {}}
+        onClick={() => { }}
         foodOptions={testFoodOptions}
-        xSpacing={100}
-        ySpacing={100}
-        height={100}
-        width={100}
+        xSpacing={foodXSpacing}
+        ySpacing={foodYSpacing}
+        height={foodHeight}
+        width={foodWidth}
       />
     </Box>
   );

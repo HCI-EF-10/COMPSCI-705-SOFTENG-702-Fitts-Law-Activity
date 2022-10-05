@@ -80,16 +80,17 @@ function ExamplePage() {
           In this part of the activity, try to move the sliders for each of the menu items. 
         </Alert>
           </Snackbar>
-        <SettingsContainer menu={0} />
+        <SettingsContainer menu={0} width={0} height={0} xSpacing={0} ySpacing={0}
+        setWidth={()=>{}} setHeight={()=>{}} setXSpacing={()=>{}} setYSpacing={()=>{}}/>
         </div>
         
-        {/* <CustomButton onClick={() => console.log("test")}>Test</CustomButton> */}
-        {/* <div style={{ width: "60%" }}>
+        <CustomButton onClick={() => console.log("test")}>Test</CustomButton>
+        <div style={{ width: "60%" }}>
           <MenuSlider min={0} max={10} value={xSpacing} onChange={(value) => setXSpacing(value)} menuText="X spacing" />
           <MenuSlider min={0} max={10} value={ySpacing} onChange={(value) => setYSpacing(value)} menuText="Y spacing" />
           <MenuSlider min={0} max={100} value={width} onChange={(value) => setWidth(value)} menuText="Width" />
           <MenuSlider min={0} max={100} value={height} onChange={(value) => setHeight(value)} menuText="Height" />
-        </div> */}
+        </div>
         <div style={{ display: 'flex', width: "50%",  justifyContent:'center'}}>
           <FoodOptionsContainer width={width} height={height} xSpacing={xSpacing} ySpacing={ySpacing} onClick={() => {
           }} foodOptions={testFoodOptions} />
