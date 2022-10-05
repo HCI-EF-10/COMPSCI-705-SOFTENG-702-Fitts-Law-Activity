@@ -26,6 +26,16 @@ const testFoodOptions: FoodOption[] = [
     title: "Burger",
     selected: false,
   },
+  {
+    imgSrc: require("../../images/burger.jpg"),
+    title: "Burger",
+    selected: false,
+  },
+  {
+    imgSrc: require("../../images/burger.jpg"),
+    title: "Burger",
+    selected: false,
+  },
 ];
 
 function TestPage() {
@@ -75,6 +85,7 @@ function TestPage() {
       />
       
       <FoodOptionsContainer
+        layout={menu}
         onClick={() => { }}
         foodOptions={testFoodOptions}
         xSpacing={foodXSpacings[menu - 1]}
