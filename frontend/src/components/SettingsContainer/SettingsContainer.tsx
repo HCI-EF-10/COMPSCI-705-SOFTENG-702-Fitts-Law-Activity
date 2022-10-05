@@ -7,17 +7,17 @@ import HTMLTooltip from "../HTMLTooltip/HTMLTooltip";
 
 interface Props {
   menu: number;
-  width: number;
-  height: number;
-  xSpacing: number;
-  ySpacing: number;
-  setWidth: (value: number) => void;
-  setHeight: (value: number) => void;
-  setXSpacing: (value: number) => void;
-  setYSpacing: (value: number) => void;
+  widths: number[];
+  heights: number[];
+  xSpacings: number[];
+  ySpacings: number[];
+  setWidths: Array<(value: number) => void>;
+  setHeights: Array<(value: number) => void>;
+  setXSpacings: Array<(value: number) => void>;
+  setYSpacings: Array<(value: number) => void>;
 }
 
-function SettingsContainer({ menu, width, height, xSpacing, ySpacing, setWidth, setHeight, setXSpacing, setYSpacing}: Props) {
+function SettingsContainer({ menu, widths, heights, xSpacings, ySpacings, setWidths, setHeights, setXSpacings, setYSpacings }: Props) {
   const [clicks, setClicks] = React.useState(0);
   const [errors, setErrors] = React.useState(0);
   const [isEditMode, setIsEditMode] = React.useState(true);
@@ -85,29 +85,31 @@ function SettingsContainer({ menu, width, height, xSpacing, ySpacing, setWidth, 
           <MenuSlider
             min={0}
             max={100}
-            value={width}
-            onChange={(width) => setWidth(width)}
-            menuText="Width"
+            value={widths[menu-1]}
+            onChange={(width) => {
+              setWidths[menu-1](width)
+            }} 
+          menuText="Width"
           />
           <MenuSlider
             min={0}
             max={100}
-            value={height}
-            onChange={(height) => setHeight(height)}
+            value={heights[menu-1]}
+            onChange={(height) => setHeights[menu-1](height)}
             menuText="Height"
           />
           <MenuSlider
             min={0}
             max={100}
-            value={xSpacing}
-            onChange={(xSpacing) => setXSpacing(xSpacing)}
+            value={xSpacings[menu-1]}
+            onChange={(xSpacing) => setXSpacings[menu-1](xSpacing)}
             menuText="X Position"
           />
           <MenuSlider
             min={0}
             max={100}
-            value={ySpacing}
-            onChange={(ySpacing) => setYSpacing(ySpacing)}
+            value={ySpacings[menu-1]}
+            onChange={(ySpacing) => setYSpacings[menu-1](ySpacing)}
             menuText="Y Position"
           />
         </Box>
