@@ -22,11 +22,12 @@ function FoodOptionsItem({
   return (
     <Box
       sx={{
-        margin: "auto",
+        margin: "10px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         marginRight,
+        minWidth: "200px",
       }}
     >
       <Button
@@ -51,10 +52,12 @@ function FoodOptionsItem({
           src={imgSrc}
         />
       </Button>
-
+      
       <Typography variant="h6" marginY="1rem">
         {title}
       </Typography>
+
+      
     </Box>
   );
 }

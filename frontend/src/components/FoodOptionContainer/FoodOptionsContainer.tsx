@@ -8,7 +8,7 @@ interface Props {
   height: number;
   xSpacing: number;
   ySpacing: number;
-  foodOptions: FoodOption[];
+  foodOptions: FoodOption[][];
   onClick: () => void;
 }
 
@@ -52,18 +52,18 @@ function FoodOptionsContainer({
             marginBottom={marginBottom}
           >
             <FoodOptionsItem
-              imgSrc={foodOptions[0].imgSrc}
-              title={foodOptions[0].title}
-              selected={foodOptions[0].selected}
+              imgSrc={foodOptions[layout - 1][0].imgSrc}
+              title={foodOptions[layout - 1][0].title}
+              selected={foodOptions[layout - 1][0].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
               marginRight={marginRight}
             />
             <FoodOptionsItem
-              imgSrc={foodOptions[1].imgSrc}
-              title={foodOptions[1].title}
-              selected={foodOptions[1].selected}
+              imgSrc={foodOptions[layout - 1][1].imgSrc}
+              title={foodOptions[layout - 1][1].title}
+              selected={foodOptions[layout - 1][1].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
@@ -71,18 +71,18 @@ function FoodOptionsContainer({
           </Box>
           <Box display="flex" flexDirection="row" justifyContent="center">
             <FoodOptionsItem
-              imgSrc={foodOptions[2].imgSrc}
-              title={foodOptions[2].title}
-              selected={foodOptions[2].selected}
+              imgSrc={foodOptions[layout - 1][2].imgSrc}
+              title={foodOptions[layout - 1][2].title}
+              selected={foodOptions[layout - 1][2].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
               marginRight={marginRight}
             />
             <FoodOptionsItem
-              imgSrc={foodOptions[3].imgSrc}
-              title={foodOptions[3].title}
-              selected={foodOptions[3].selected}
+              imgSrc={foodOptions[layout - 1][3].imgSrc}
+              title={foodOptions[layout - 1][3].title}
+              selected={foodOptions[layout - 1][3].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
@@ -129,18 +129,18 @@ function FoodOptionsContainer({
             marginBottom={marginBottom}
           >
             <FoodOptionsItem
-              imgSrc={foodOptions[0].imgSrc}
-              title={foodOptions[0].title}
-              selected={foodOptions[0].selected}
+              imgSrc={foodOptions[layout - 1][0].imgSrc}
+              title={foodOptions[layout - 1][0].title}
+              selected={foodOptions[layout - 1][0].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
               marginRight={marginRight}
             />
             <FoodOptionsItem
-              imgSrc={foodOptions[1].imgSrc}
-              title={foodOptions[1].title}
-              selected={foodOptions[1].selected}
+              imgSrc={foodOptions[layout - 1][1].imgSrc}
+              title={foodOptions[layout - 1][1].title}
+              selected={foodOptions[layout - 1][1].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
@@ -148,38 +148,38 @@ function FoodOptionsContainer({
           </Box>
           <Box display="flex" flexDirection="row" justifyContent="center">
             <FoodOptionsItem
-              imgSrc={foodOptions[2].imgSrc}
-              title={foodOptions[2].title}
-              selected={foodOptions[2].selected}
+              imgSrc={foodOptions[layout - 1][2].imgSrc}
+              title={foodOptions[layout - 1][2].title}
+              selected={foodOptions[layout - 1][2].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
               marginRight={marginRight}
             />
             <FoodOptionsItem
-              imgSrc={foodOptions[3].imgSrc}
-              title={foodOptions[3].title}
-              selected={foodOptions[3].selected}
+              imgSrc={foodOptions[layout - 1][3].imgSrc}
+              title={foodOptions[layout - 1][3].title}
+              selected={foodOptions[layout - 1][3].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
             />
           </Box>
           <Box display="flex" flexDirection="row" justifyContent="center"
-          marginTop={marginBottom}>
+            marginTop={marginBottom}>
             <FoodOptionsItem
-              imgSrc={foodOptions[4].imgSrc}
-              title={foodOptions[4].title}
-              selected={foodOptions[4].selected}
+              imgSrc={foodOptions[layout - 1][4].imgSrc}
+              title={foodOptions[layout - 1][4].title}
+              selected={foodOptions[layout - 1][4].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
               marginRight={marginRight}
             />
             <FoodOptionsItem
-              imgSrc={foodOptions[5].imgSrc}
-              title={foodOptions[5].title}
-              selected={foodOptions[5].selected}
+              imgSrc={foodOptions[layout - 1][5].imgSrc}
+              title={foodOptions[layout - 1][5].title}
+              selected={foodOptions[layout - 1][5].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
@@ -202,69 +202,78 @@ function FoodOptionsContainer({
     );
   }
   else if (layout === 3) {
+    const xPos = `${xSpacing * widthUnit - 50 * widthUnit}vw`;
     return (
-      <Box
-        flex={3}
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        paddingTop="2rem"
-      >
-        <Typography variant="h2">Food Options</Typography>
         <Box
+          flex={3}
           display="flex"
           flexDirection="column"
           alignItems="center"
-          marginY={"auto"}
+          paddingTop="2rem"
         >
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            marginBottom={marginBottom}
+          <Typography variant="h2">Food Options</Typography>
+          
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              marginY={"auto"}
+              position="relative"
+            >
+              
+              <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                marginLeft={xPos}
+              >
+                <Box marginBottom={marginBottom}>
+                <FoodOptionsItem
+                  imgSrc={foodOptions[layout - 1][0].imgSrc}
+                  title={foodOptions[layout - 1][0].title}
+                  selected={foodOptions[layout - 1][0].selected}
+                  onClick={() => { }}
+                  width={buttonWidth}
+                  height={buttonHeight}
+                />
+                </Box>
+                <Box>
+                <FoodOptionsItem
+                  imgSrc={foodOptions[layout - 1][1].imgSrc}
+                  title={foodOptions[layout - 1][1].title}
+                  selected={foodOptions[layout - 1][1].selected}
+                  onClick={() => { }}
+                  width={buttonWidth}
+                  height={buttonHeight}
+                />
+                </Box>
+                <Box marginTop={marginBottom}>
+                <FoodOptionsItem
+                  imgSrc={foodOptions[layout - 1][2].imgSrc}
+                  title={foodOptions[layout - 1][2].title}
+                  selected={foodOptions[layout - 1][2].selected}
+                  onClick={() => { }}
+                  width={buttonWidth}
+                  height={buttonHeight}
+                />
+                </Box>
+              </Box>
+            </Box>
+          
+          <Button
+            variant="contained"
+            sx={{
+              fontSize: "1rem",
+              paddingX: "2rem",
+              borderRadius: "10rem",
+              marginBottom: "1rem",
+            }}
           >
-            <FoodOptionsItem
-              imgSrc={foodOptions[0].imgSrc}
-              title={foodOptions[0].title}
-              selected={foodOptions[0].selected}
-              onClick={() => { }}
-              width={buttonWidth}
-              height={buttonHeight}
-              marginRight={marginRight}
-            />
-            <FoodOptionsItem
-              imgSrc={foodOptions[1].imgSrc}
-              title={foodOptions[1].title}
-              selected={foodOptions[1].selected}
-              onClick={() => { }}
-              width={buttonWidth}
-              height={buttonHeight}
-              marginRight={marginRight}
-            />
-            <FoodOptionsItem
-              imgSrc={foodOptions[2].imgSrc}
-              title={foodOptions[2].title}
-              selected={foodOptions[2].selected}
-              onClick={() => { }}
-              width={buttonWidth}
-              height={buttonHeight}
-              marginRight={marginRight}
-            />
-          </Box>
+            CHECKOUT
+          </Button>
         </Box>
 
-        <Button
-          variant="contained"
-          sx={{
-            fontSize: "1rem",
-            paddingX: "2rem",
-            borderRadius: "10rem",
-            marginBottom: "1rem",
-          }}
-        >
-          CHECKOUT
-        </Button>
-      </Box>
+
     );
   } else {
     return (
@@ -291,18 +300,18 @@ function FoodOptionsContainer({
             marginBottom={marginBottom}
           >
             <FoodOptionsItem
-              imgSrc={foodOptions[0].imgSrc}
-              title={foodOptions[0].title}
-              selected={foodOptions[0].selected}
+              imgSrc={foodOptions[layout - 1][0].imgSrc}
+              title={foodOptions[layout - 1][0].title}
+              selected={foodOptions[layout - 1][0].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
               marginRight={marginRight}
             />
             <FoodOptionsItem
-              imgSrc={foodOptions[1].imgSrc}
-              title={foodOptions[1].title}
-              selected={foodOptions[1].selected}
+              imgSrc={foodOptions[layout - 1][1].imgSrc}
+              title={foodOptions[layout - 1][1].title}
+              selected={foodOptions[layout - 1][1].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
@@ -310,18 +319,18 @@ function FoodOptionsContainer({
           </Box>
           <Box display="flex" flexDirection="row" justifyContent="center">
             <FoodOptionsItem
-              imgSrc={foodOptions[2].imgSrc}
-              title={foodOptions[2].title}
-              selected={foodOptions[2].selected}
+              imgSrc={foodOptions[layout - 1][2].imgSrc}
+              title={foodOptions[layout - 1][2].title}
+              selected={foodOptions[layout - 1][2].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
               marginRight={marginRight}
             />
             <FoodOptionsItem
-              imgSrc={foodOptions[3].imgSrc}
-              title={foodOptions[3].title}
-              selected={foodOptions[3].selected}
+              imgSrc={foodOptions[layout - 1][3].imgSrc}
+              title={foodOptions[layout - 1][3].title}
+              selected={foodOptions[layout - 1][3].selected}
               onClick={() => { }}
               width={buttonWidth}
               height={buttonHeight}
