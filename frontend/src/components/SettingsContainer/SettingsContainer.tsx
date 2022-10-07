@@ -85,31 +85,31 @@ function SettingsContainer({ menu, widths, heights, xSpacings, ySpacings, setWid
           <MenuSlider
             min={0}
             max={100}
-            value={widths[menu-1]}
+            value={widths[menu]}
             onChange={(width) => {
-              setWidths[menu-1](width)
+              setWidths[menu](width)
             }} 
           menuText="Width"
           />
           <MenuSlider
             min={0}
             max={100}
-            value={heights[menu-1]}
-            onChange={(height) => setHeights[menu-1](height)}
+            value={heights[menu]}
+            onChange={(height) => setHeights[menu](height)}
             menuText="Height"
           />
           <MenuSlider
             min={0}
             max={100}
-            value={xSpacings[menu-1]}
-            onChange={(xSpacing) => setXSpacings[menu-1](xSpacing)}
+            value={xSpacings[menu]}
+            onChange={(xSpacing) => setXSpacings[menu](xSpacing)}
             menuText="X Position"
           />
           <MenuSlider
             min={0}
             max={100}
-            value={ySpacings[menu-1]}
-            onChange={(ySpacing) => setYSpacings[menu-1](ySpacing)}
+            value={ySpacings[menu]}
+            onChange={(ySpacing) => setYSpacings[menu](ySpacing)}
             menuText="Y Position"
           />
         </Box>

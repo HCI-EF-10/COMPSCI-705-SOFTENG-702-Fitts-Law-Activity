@@ -21,13 +21,13 @@ function FoodOptionsContainer({
   foodOptions,
   onClick,
 }: Props) {
-  const layoutIndex = layout - 1;
-  const widthUnit = layout === 1 ? 0.19 : layout === 2 ? 0.115 : 0.38;
-  const heightUnit = layout === 1 ? 0.183 : layout === 2 ? 0.183 : 0.08;
+  const layoutIndex = layout;
+  const widthUnit = layout === 0 ? 0.19 : layout === 1 ? 0.115 : 0.38;
+  const heightUnit = layout === 0 ? 0.183 : layout === 1 ? 0.183 : 0.08;
   const buttonWidth = `${width * widthUnit}vw`;
   const buttonHeight = `calc(${height * heightUnit}vh + 2rem)`;
   const marginRight = `${
-    xSpacing * widthUnit - (layout === 3 ? 50 * widthUnit : 0)
+    xSpacing * widthUnit - (layout === 2 ? 50 * widthUnit : 0)
   }vw`;
   const marginBottom = `${ySpacing * heightUnit}vh`;
 
@@ -41,7 +41,7 @@ function FoodOptionsContainer({
     >
       <Typography variant="h2">Food Options</Typography>
 
-      {layout === 1 ? (
+      {layout === 0 ? (
         <Box
           display="flex"
           flexDirection="column"
@@ -92,7 +92,7 @@ function FoodOptionsContainer({
             />
           </Box>
         </Box>
-      ) : layout === 2 ? (
+      ) : layout === 1 ? (
         <Box
           display="flex"
           flexDirection="column"
@@ -161,7 +161,7 @@ function FoodOptionsContainer({
             />
           </Box>
         </Box>
-      ) : layout === 3 ? (
+      ) : layout === 2 ? (
         <Box
           display="flex"
           flexDirection="column"
