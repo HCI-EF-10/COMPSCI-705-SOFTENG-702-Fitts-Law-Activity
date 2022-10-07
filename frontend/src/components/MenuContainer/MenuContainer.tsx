@@ -33,6 +33,7 @@ function MenuContainer({
         flexDirection: "column",
         paddingTop: "2rem",
         alignItems: "center",
+
       }}
     >
       <Typography variant="h2">Menus</Typography>
@@ -44,22 +45,42 @@ function MenuContainer({
         alignItems="center"
         rowSpacing={`${rowSpacing * 0.12}vh`}
       >
-        {[...Array(4)]
-          .map((_, index) => index + 1)
-          .map((index) => (
-            <Grid item key={`menu-button-${index}`}>
-              <MenuButton
-                id={`${index}`}
-                onClick={() => handleClick(index)}
-                sx={{
-                  width: `calc(${buttonWidth * 0.15}vw + 5rem)`,
-                  height: `${buttonHeight * 0.12}vh`,
-                }}
-              >
-                MENU {index}
-              </MenuButton>
-            </Grid>
-          ))}
+        <Grid item key={`menu-button-${1}`}>
+          <MenuButton
+            id={`${1}`}
+            onClick={() => handleClick(1)}
+            sx={{
+              width: `calc(${buttonWidth * 0.15}vw + 5rem)`,
+              height: `${buttonHeight * 0.12}vh`,
+            }}
+          >
+            Burgers
+          </MenuButton>
+        </Grid>
+        <Grid item key={`menu-button-${2}`}>
+          <MenuButton
+            id={`${2}`}
+            onClick={() => handleClick(2)}
+            sx={{
+              width: `calc(${buttonWidth * 0.15}vw + 5rem)`,
+              height: `${buttonHeight * 0.12}vh`,
+            }}
+          >
+            Sides
+          </MenuButton>
+        </Grid>
+        <Grid item key={`menu-button-${3}`}>
+          <MenuButton
+            id={`${3}`}
+            onClick={() => handleClick(3)}
+            sx={{
+              width: `calc(${buttonWidth * 0.15}vw + 5rem)`,
+              height: `${buttonHeight * 0.12}vh`,
+            }}
+          >
+            Dessert
+          </MenuButton>
+        </Grid>
       </Grid>
     </Box>
   );
