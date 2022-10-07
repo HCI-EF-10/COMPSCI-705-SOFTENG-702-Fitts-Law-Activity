@@ -54,7 +54,7 @@ function MenuContainer({
           <Grid item key={`menu-button-${classIndex}`}>
             <MenuButton
               id={`${classIndex}`}
-              onClick={() => handleClick(classIndex)}
+              onClick={() => handleClick(classIndex + 1)}
               sx={{ width, height }}
             >
               {menu}
