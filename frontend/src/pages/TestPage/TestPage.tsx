@@ -81,7 +81,7 @@ const menu3: FoodOption[] = [
 const foodOptions = [menu1, menu2, menu3];
 
 function TestPage() {
-  const [menu, setMenu] = React.useState(0);
+  const [menu, setMenu] = React.useState(1);
   const [foodWidth1, setFoodWidth1] = React.useState(0);
   const [foodHeight1, setFoodHeight1] = React.useState(0);
   const [foodXSpacing1, setFoodXSpacing1] = React.useState(0);
@@ -169,10 +169,10 @@ function TestPage() {
         layout={menu}
         onClick={() => {}}
         foodOptions={foodOptions}
-        xSpacing={foodXSpacings[menu]}
-        ySpacing={foodYSpacings[menu]}
-        height={foodHeights[menu]}
-        width={foodWidths[menu]}
+        xSpacing={foodXSpacings[menu - 1]}
+        ySpacing={foodYSpacings[menu - 1]}
+        height={foodHeights[menu - 1]}
+        width={foodWidths[menu - 1]}
       />
     </Box>
   );
