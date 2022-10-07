@@ -24,6 +24,12 @@ function MenuContainer({
   buttonHeight,
   handleClick,
 }: Props) {
+  const widthUnit = 0.14;
+  const heightUnit = 0.178;
+  const width = `calc(${buttonWidth * widthUnit}vw + 5rem)`;
+  const height = `${buttonHeight * heightUnit}vh`;
+  const menus = ["Burgers", "Sides", "Desserts"];
+
   return (
     <Box
       sx={{
@@ -33,7 +39,6 @@ function MenuContainer({
         flexDirection: "column",
         paddingTop: "2rem",
         alignItems: "center",
-
       }}
     >
       <Typography variant="h2">Menus</Typography>
@@ -43,44 +48,19 @@ function MenuContainer({
         direction="column"
         justifyContent="center"
         alignItems="center"
-        rowSpacing={`${rowSpacing * 0.12}vh`}
+        rowSpacing={`${rowSpacing * heightUnit}vh`}
       >
-        <Grid item key={`menu-button-${1}`}>
-          <MenuButton
-            id={`${1}`}
-            onClick={() => handleClick(1)}
-            sx={{
-              width: `calc(${buttonWidth * 0.15}vw + 5rem)`,
-              height: `${buttonHeight * 0.12}vh`,
-            }}
-          >
-            Burgers
-          </MenuButton>
-        </Grid>
-        <Grid item key={`menu-button-${2}`}>
-          <MenuButton
-            id={`${2}`}
-            onClick={() => handleClick(2)}
-            sx={{
-              width: `calc(${buttonWidth * 0.15}vw + 5rem)`,
-              height: `${buttonHeight * 0.12}vh`,
-            }}
-          >
-            Sides
-          </MenuButton>
-        </Grid>
-        <Grid item key={`menu-button-${3}`}>
-          <MenuButton
-            id={`${3}`}
-            onClick={() => handleClick(3)}
-            sx={{
-              width: `calc(${buttonWidth * 0.15}vw + 5rem)`,
-              height: `${buttonHeight * 0.12}vh`,
-            }}
-          >
-            Dessert
-          </MenuButton>
-        </Grid>
+        {menus.map((menu, classIndex) => (
+          <Grid item key={`menu-button-${classIndex}`}>
+            <MenuButton
+              id={`${classIndex}`}
+              onClick={() => handleClick(classIndex + 1)}
+              sx={{ width, height }}
+            >
+              {menu}
+            </MenuButton>
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );
