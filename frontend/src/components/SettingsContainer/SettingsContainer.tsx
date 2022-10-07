@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Button, Box, Typography, IconButton } from "@mui/material";
 import MenuSlider from "../../components/MenuSlider/MenuSlider";
 import { useNavigate } from "react-router-dom";
@@ -15,26 +15,33 @@ interface Props {
   setHeights: Array<(value: number) => void>;
   setXSpacings: Array<(value: number) => void>;
   setYSpacings: Array<(value: number) => void>;
+  scenarioNumber: number;
+  attemptNumber: number;
+  isInTest: boolean;
+  onTestClick: () => void;
+  currentAttemptClicks: number;
+  currentAttemptErrors: number;
+  timeElapsedFormatted: string;
 }
 
-function SettingsContainer({ menu, widths, heights, xSpacings, ySpacings, setWidths, setHeights, setXSpacings, setYSpacings }: Props) {
-  const [clicks, setClicks] = React.useState(0);
-  const [errors, setErrors] = React.useState(0);
-  const [isEditMode, setIsEditMode] = React.useState(true);
-  const navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate("/");
-  };
-
-  const setEditMode = () => {
-    setIsEditMode(true);
-  };
-
-  const setViewMode = () => {
-    setIsEditMode(false);
-  };
-
+function SettingsContainer({
+                             menu,
+                             widths,
+                             heights,
+                             xSpacings,
+                             ySpacings,
+                             setWidths,
+                             setHeights,
+                             setXSpacings,
+                             setYSpacings,
+                             scenarioNumber,
+                             attemptNumber,
+                             isInTest,
+                             onTestClick,
+                             currentAttemptClicks,
+                             currentAttemptErrors,
+                             timeElapsedFormatted
+                           }: Props) {
   return (
     <Box
       sx={{
@@ -51,7 +58,7 @@ function SettingsContainer({ menu, widths, heights, xSpacings, ySpacings, setWid
       <Box display="flex" flexDirection="row">
         <Typography variant="h2">Settings</Typography>
         <HTMLTooltip
-          button={<HelpIcon />}
+          button={<HelpIcon/>}
           htmlFrag={
             <div>
               <h1>Testing the hover functionality</h1>
@@ -85,31 +92,31 @@ function SettingsContainer({ menu, widths, heights, xSpacings, ySpacings, setWid
           <MenuSlider
             min={0}
             max={100}
-            value={widths[menu-1]}
+            value={widths[menu - 1]}
             onChange={(width) => {
-              setWidths[menu-1](width)
-            }} 
-          menuText="Width"
+              setWidths[menu - 1](width)
+            }}
+            menuText="Width"
           />
           <MenuSlider
             min={0}
             max={100}
-            value={heights[menu-1]}
-            onChange={(height) => setHeights[menu-1](height)}
+            value={heights[menu - 1]}
+            onChange={(height) => setHeights[menu - 1](height)}
             menuText="Height"
           />
           <MenuSlider
             min={0}
             max={100}
-            value={xSpacings[menu-1]}
-            onChange={(xSpacing) => setXSpacings[menu-1](xSpacing)}
+            value={xSpacings[menu - 1]}
+            onChange={(xSpacing) => setXSpacings[menu - 1](xSpacing)}
             menuText="X Position"
           />
           <MenuSlider
             min={0}
             max={100}
-            value={ySpacings[menu-1]}
-            onChange={(ySpacing) => setYSpacings[menu-1](ySpacing)}
+            value={ySpacings[menu - 1]}
+            onChange={(ySpacing) => setYSpacings[menu - 1](ySpacing)}
             menuText="Y Position"
           />
         </Box>
@@ -120,23 +127,16 @@ function SettingsContainer({ menu, widths, heights, xSpacings, ySpacings, setWid
         alignItems="center"
         marginY="4rem"
       >
-
-        <Typography variant="h3">Number of clicks: {clicks}</Typography>
-        <Typography variant="h3">Errors: {errors}</Typography>
+        <Typography variant="h3">Scenario: {scenarioNumber}/3</Typography>
+        <Typography variant="h3">Attempt: {attemptNumber}/3</Typography>
+        <Typography variant="h3">Number of clicks: {currentAttemptClicks}</Typography>
+        <Typography variant="h3">Errors: {currentAttemptErrors}</Typography>
+        <Typography variant="h3">Time elapsed: {timeElapsedFormatted}</Typography>
       </Box>
 
       <Grid container justifyContent="space-evenly" padding="15px">
-        {isEditMode ? (
-          <Button variant="contained" onClick={setViewMode}>
-            EDIT MODE
-          </Button>
-        ) : (
-          <Button variant="contained" onClick={setEditMode}>
-            VIEW MODE
-          </Button>
-        )}
-        <Button variant="contained" onClick={handleNavigate}>
-          RUN TEST
+        <Button variant="contained" onClick={onTestClick}>
+          {isInTest ? "END TEST" : "START TEST"}
         </Button>
       </Grid>
     </Box>
