@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import HelpIcon from "@mui/icons-material/Help";
 import HTMLTooltip from "../HTMLTooltip/HTMLTooltip";
 import { Action } from "../../util/Types/GeneralTypes";
+import { FoodOption } from "../../util/Types/ApiTypes";
 
 interface Props {
   menu: number;
@@ -26,6 +27,82 @@ interface Props {
   actions: Action[];
   actionIndex: number;
 }
+
+const menu1: FoodOption[] = [
+  {
+    imgSrc: require("../../images/cheeseburger.jpg"),
+    title: "Cheeseburger",
+    selected: false,
+  },
+  {
+    imgSrc: require("../../images/burger.jpg"),
+    title: "Quarter Pounder",
+    selected: false,
+  },
+  {
+    imgSrc: require("../../images/chickenburger.jpg"),
+    title: "Chicken Burger",
+    selected: false,
+  },
+  {
+    imgSrc: require("../../images/fishburger.jpg"),
+    title: "Fish Burger",
+    selected: false,
+  },
+];
+
+const menu2: FoodOption[] = [
+  {
+    imgSrc: require("../../images/fries.jpg"),
+    title: "Fries",
+    selected: false,
+  },
+  {
+    imgSrc: require("../../images/onionrings.jfif"),
+    title: "Onion Rings",
+    selected: false,
+  },
+  {
+    imgSrc: require("../../images/mozzasticks.jfif"),
+    title: "Mozzarella Sticks",
+    selected: false,
+  },
+  {
+    imgSrc: require("../../images/chickenstrips.jfif"),
+    title: "Chicken Strips",
+    selected: false,
+  },
+  {
+    imgSrc: require("../../images/chickennuggets.jpg"),
+    title: "Chicken Nuggets",
+    selected: false,
+  },
+  {
+    imgSrc: require("../../images/chickenwings.jpg"),
+    title: "Chicken Wings",
+    selected: false,
+  },
+];
+
+const menu3: FoodOption[] = [
+  {
+    imgSrc: require("../../images/softserve.jpg"),
+    title: "Soft Serve",
+    selected: false,
+  },
+  {
+    imgSrc: require("../../images/applepie.jpg"),
+    title: "Apple Pie",
+    selected: false,
+  },
+  {
+    imgSrc: require("../../images/sundae.jpg"),
+    title: "Sundae",
+    selected: false,
+  },
+];
+const foodOptions = [menu1, menu2, menu3];
+const menuNames = ["Burgers", "Sides", "Desserts"];
 
 function SettingsContainer({
                              menu,
@@ -62,7 +139,7 @@ function SettingsContainer({
     >
       <Box display="flex" flexDirection="row">
         <Typography variant="h2">Settings</Typography>
-        <HTMLTooltip
+        {/* <HTMLTooltip
           button={<HelpIcon/>}
           htmlFrag={
             <div>
@@ -71,8 +148,9 @@ function SettingsContainer({
               cleaner look with less styling
             </div>
           }
-        />
+        /> */}
       </Box>
+      {!isInTest && (<>
       <Typography variant="subtitle1" marginTop="0.25rem">
         Selected component: Menu {menu} item
       </Typography>
@@ -86,7 +164,7 @@ function SettingsContainer({
           marginTop: "4rem",
         }}
       >
-        <Typography variant="h3" marginBottom="1rem">
+        <Typography variant="h4" marginBottom="1rem">
           Component Properties
         </Typography>
         <Box
@@ -125,28 +203,29 @@ function SettingsContainer({
             menuText="Y Position"
           />
         </Box>
-      </Box>
+      </Box></>)}
       <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
         marginY="4rem"
       >
-        <Typography variant="h3">Scenario: {scenarioNumber}/3</Typography>
+        {isInTest && (<><Typography variant="h3">Scenario: {scenarioNumber}/3</Typography>
         <Typography variant="h3">Attempt: {attemptNumber}/3</Typography>
         <Typography variant="h3">Number of clicks: {currentAttemptClicks}</Typography>
         <Typography variant="h3">Errors: {currentAttemptErrors}</Typography>
-        <Typography variant="h3">Time elapsed: {timeElapsedFormatted}</Typography>
+        <Typography variant="h3">Time elapsed: {timeElapsedFormatted}</Typography></>)}
       </Box>
-      <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
+      <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding:"20px"}}>
+        {isInTest && (<Typography variant="h3" padding="10px">Please complete the following scenario:</Typography>)}
         {isInTest && actions.map((action, index) => (
           <Typography key={index} sx={{color: actionIndex > index ? "green" : "red"}}>
-            Step {index + 1}. Click on {action.menuItemIndex} menu and select a {action.foodOptionIndex}.
+            Step {index + 1}. Click on {menuNames[action.menuItemIndex-1]} menu and select a {foodOptions[action.menuItemIndex-1][action.foodOptionIndex-1].title}.
           </Typography>
         ))}
         {isInTest && (
           <Typography sx={{color: "red"}}>
-            Lastly click checkout.
+            Then click checkout.
           </Typography>
         )}
       </Box>
