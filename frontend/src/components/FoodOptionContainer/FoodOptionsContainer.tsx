@@ -227,7 +227,7 @@ function FoodOptionsContainer({
               imgSrc={foodOptions[layoutIndex][0].imgSrc}
               title={foodOptions[layoutIndex][0].title}
               selected={foodOptions[layoutIndex][0].selected}
-              onClick={() => {}}
+              onClick={() => onClick(1, 1)}
               width={buttonWidth}
               height={buttonHeight}
               marginRight={marginRight}
@@ -236,7 +236,7 @@ function FoodOptionsContainer({
               imgSrc={foodOptions[layoutIndex][1].imgSrc}
               title={foodOptions[layoutIndex][1].title}
               selected={foodOptions[layoutIndex][1].selected}
-              onClick={() => {}}
+              onClick={() => onClick(1, 2)}
               width={buttonWidth}
               height={buttonHeight}
             />
@@ -246,7 +246,7 @@ function FoodOptionsContainer({
               imgSrc={foodOptions[layoutIndex][2].imgSrc}
               title={foodOptions[layoutIndex][2].title}
               selected={foodOptions[layoutIndex][2].selected}
-              onClick={() => {}}
+              onClick={() => onClick(1, 3)}
               width={buttonWidth}
               height={buttonHeight}
               marginRight={marginRight}
@@ -255,14 +255,25 @@ function FoodOptionsContainer({
               imgSrc={foodOptions[layoutIndex][3].imgSrc}
               title={foodOptions[layoutIndex][3].title}
               selected={foodOptions[layoutIndex][3].selected}
-              onClick={() => {}}
+              onClick={() => onClick(1, 4)}
               width={buttonWidth}
               height={buttonHeight}
             />
           </Box>
         </Box>
       )}
-      <PopUpDialog></PopUpDialog>
+      <Button
+        variant="contained"
+        sx={{
+          fontSize: "1rem",
+          paddingX: "2rem",
+          borderRadius: "10rem",
+          marginBottom: "1rem",
+        }}
+        onClick={onCheckoutClick}
+      >
+        CHECKOUT
+      </Button>
     </Box>
   );
 }

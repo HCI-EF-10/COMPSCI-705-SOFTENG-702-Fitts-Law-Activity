@@ -4,6 +4,7 @@ import MenuSlider from "../../components/MenuSlider/MenuSlider";
 import { useNavigate } from "react-router-dom";
 import HelpIcon from "@mui/icons-material/Help";
 import HTMLTooltip from "../HTMLTooltip/HTMLTooltip";
+import { Action } from "../../util/Types/GeneralTypes";
 
 interface Props {
   menu: number;
@@ -22,6 +23,8 @@ interface Props {
   currentAttemptClicks: number;
   currentAttemptErrors: number;
   timeElapsedFormatted: string;
+  actions: Action[];
+  actionIndex: number;
 }
 
 function SettingsContainer({
@@ -40,7 +43,9 @@ function SettingsContainer({
                              onTestClick,
                              currentAttemptClicks,
                              currentAttemptErrors,
-                             timeElapsedFormatted
+                             timeElapsedFormatted,
+                             actions,
+                             actionIndex
                            }: Props) {
   return (
     <Box
@@ -133,12 +138,21 @@ function SettingsContainer({
         <Typography variant="h3">Errors: {currentAttemptErrors}</Typography>
         <Typography variant="h3">Time elapsed: {timeElapsedFormatted}</Typography>
       </Box>
-
-      <Grid container justifyContent="space-evenly" padding="15px">
-        <Button variant="contained" onClick={onTestClick}>
-          {isInTest ? "END TEST" : "START TEST"}
-        </Button>
-      </Grid>
+      <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
+        {isInTest && actions.map((action, index) => (
+          <Typography key={index} sx={{color: actionIndex > index ? "green" : "red"}}>
+            Step {index + 1}. Click on {action.menuItemIndex} menu and select a {action.foodOptionIndex}.
+          </Typography>
+        ))}
+        {isInTest && (
+          <Typography sx={{color: "red"}}>
+            Lastly click checkout.
+          </Typography>
+        )}
+      </Box>
+      <Button variant="contained" onClick={onTestClick}>
+        {isInTest ? "END TEST" : "START TEST"}
+      </Button>
     </Box>
   );
 }

@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import SettingsContainer from "../../components/SettingsContainer/SettingsContainer";
 import MenuContainer from "../../components/MenuContainer/MenuContainer";
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
 import { FoodOption } from "../../util/Types/ApiTypes";
 import { Scenario } from "../../util/Types/GeneralTypes";
 import { useNavigate } from "react-router-dom";
+import { PopUpDialog } from "../../components/PopUpDialog/PopUpDialog";
 
 const menu1: FoodOption[] = [
   {
@@ -198,7 +199,6 @@ function TestPage() {
   ];
 
   const [isInTestMode, setIsInTestMode] = React.useState(false);
-  const [startTime, setStartTime] = React.useState<number>(0);
   const [timeElapsedFormatted, setTimeElapsedFormatted] = React.useState("0m 0s");
   const [currentInterval, setCurrentInterval] = React.useState<any>();
 
@@ -209,17 +209,20 @@ function TestPage() {
   const [scenarioIndex, setScenarioIndex] = React.useState(0);
   const [actionIndex, setActionIndex] = React.useState(0);
 
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [dialogTitle, setDialogTitle] = React.useState("");
+  const [dialogContent, setDialogContent] = React.useState<JSX.Element>((<></>));
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (currentInterval !== null) {
+    if (currentInterval !== null && dialogOpen) {
       clearInterval(currentInterval);
     }
 
-    if (isInTestMode) {
+    if (isInTestMode && !dialogOpen) {
       // Start timer
       const newStartTime = Date.now();
-      setStartTime(newStartTime);
 
       // Start interval to update time elapsed
       const interval = setInterval(() => {
@@ -235,7 +238,7 @@ function TestPage() {
 
       setCurrentInterval(interval);
     }
-  }, [isInTestMode]);
+  }, [isInTestMode, dialogOpen]);
 
   const onMenuClick = (index: number) => {
     if (!isInTestMode) {
@@ -309,7 +312,18 @@ function TestPage() {
       setActionIndex(0);
       setMenu(1);
 
-      setIsInTestMode(false);
+      setDialogOpen(true);
+
+      setDialogTitle("Complete!");
+
+      setDialogContent(
+        <div>
+          <Typography>You have completed scenario {scenarioIndex} attempt {attemptNumber}</Typography>
+          <Typography>Number of clicks: {numberOfClicks}</Typography>
+          <Typography>Number of errors: {numberOfErrors}</Typography>
+          <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
+        </div>
+      );
     } else {
       setNumberOfErrors(numberOfErrors + 1);
       setNumberOfClicks(numberOfClicks + 1);
@@ -319,18 +333,39 @@ function TestPage() {
   const onTestClick = () => {
     if (isInTestMode) {
       setActionIndex(0);
+      setIsInTestMode(false);
     } else {
+      setDialogOpen(true);
+
+      setDialogTitle("Test Mode");
+
+      const currentScenario = scenarios[scenarioIndex];
+
+      let test = currentScenario.actions.map((action, index) => {
+        return (
+          <Typography key={index}>
+            Step {index + 1}. Click on {action.menuItemIndex} menu and select a {action.foodOptionIndex}.
+          </Typography>
+        )
+      });
+
+      setDialogContent((
+        <>
+          {test}
+          <Typography>
+            Lastly click checkout.
+          </Typography>
+        </>
+      ));
+
       setNumberOfClicks(0);
       setNumberOfErrors(0);
     }
-
-    setIsInTestMode(!isInTestMode)
   }
 
-  try {
-    console.log(`Click foodItem ${scenarios[scenarioIndex].actions[actionIndex].foodOptionIndex} in menu ${scenarios[scenarioIndex].actions[actionIndex].menuItemIndex}`);
-  } catch (e) {
-    console.log("Click checkout");
+  const onTestStartDialogClose = () => {
+    setDialogOpen(false);
+    setIsInTestMode(!isInTestMode);
   }
 
   return (
@@ -349,8 +384,8 @@ function TestPage() {
                          currentAttemptClicks={numberOfClicks} currentAttemptErrors={numberOfErrors}
                          scenarioNumber={scenarioIndex + 1} attemptNumber={attemptNumber + 1}
                          timeElapsedFormatted={timeElapsedFormatted}
+                         actions={scenarios[scenarioIndex].actions} actionIndex={actionIndex}
       />
-
       <MenuContainer
         handleClick={onMenuClick}
         rowSpacing={100}
@@ -368,6 +403,7 @@ function TestPage() {
         height={foodHeights[menu - 1]}
         width={foodWidths[menu - 1]}
       />
+      <PopUpDialog title={dialogTitle} content={dialogContent} open={dialogOpen} onClose={onTestStartDialogClose}/>
     </Box>
   );
 }
