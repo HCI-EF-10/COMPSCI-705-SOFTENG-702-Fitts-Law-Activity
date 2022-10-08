@@ -1,9 +1,12 @@
-import React from "react";
-import { Box } from "@mui/material";
+import React, { useEffect } from "react";
+import { Box, Typography } from "@mui/material";
 import SettingsContainer from "../../components/SettingsContainer/SettingsContainer";
 import MenuContainer from "../../components/MenuContainer/MenuContainer";
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
 import { FoodOption } from "../../util/Types/ApiTypes";
+import { Scenario } from "../../util/Types/GeneralTypes";
+import { useNavigate } from "react-router-dom";
+import { PopUpDialog } from "../../components/PopUpDialog/PopUpDialog";
 
 const menu1: FoodOption[] = [
   {
@@ -80,6 +83,63 @@ const menu3: FoodOption[] = [
 ];
 const foodOptions = [menu1, menu2, menu3];
 
+const scenario1: Scenario = {
+  actions: [
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 1,
+    },
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 2,
+    },
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 3,
+    },
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 4,
+    },
+  ]
+}
+
+const scenario2: Scenario = {
+  actions: [
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 1,
+    },
+    {
+      menuItemIndex: 2,
+      foodOptionIndex: 1,
+    },
+    {
+      menuItemIndex: 3,
+      foodOptionIndex: 1,
+    },
+  ]
+}
+
+const scenario3: Scenario = {
+  actions: [
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 1,
+    },
+    {
+      menuItemIndex: 2,
+      foodOptionIndex: 1,
+    },
+    {
+      menuItemIndex: 3,
+      foodOptionIndex: 1,
+    },
+  ]
+}
+
+const scenarios: Scenario[] = [scenario1, scenario2, scenario3];
+
 function TestPage() {
   const [menu, setMenu] = React.useState(1);
   const [foodWidth1, setFoodWidth1] = React.useState(0);
@@ -138,6 +198,176 @@ function TestPage() {
     setFoodYSpacing4,
   ];
 
+  const [isInTestMode, setIsInTestMode] = React.useState(false);
+  const [timeElapsedFormatted, setTimeElapsedFormatted] = React.useState("0m 0s");
+  const [currentInterval, setCurrentInterval] = React.useState<any>();
+
+  const [numberOfClicks, setNumberOfClicks] = React.useState(0);
+  const [numberOfErrors, setNumberOfErrors] = React.useState(0);
+
+  const [attemptNumber, setAttemptNumber] = React.useState(0);
+  const [scenarioIndex, setScenarioIndex] = React.useState(0);
+  const [actionIndex, setActionIndex] = React.useState(0);
+
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [dialogTitle, setDialogTitle] = React.useState("");
+  const [dialogContent, setDialogContent] = React.useState<JSX.Element>((<></>));
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (currentInterval !== null) {
+      clearInterval(currentInterval);
+    }
+
+    if (isInTestMode && !dialogOpen) {
+      // Start timer
+      const newStartTime = Date.now();
+
+      // Start interval to update time elapsed
+      const interval = setInterval(() => {
+        const timeElapsed = Date.now() - newStartTime;
+
+        const test = new Date(timeElapsed);
+
+        const minutes = test.getMinutes();
+        const seconds = test.getSeconds();
+
+        setTimeElapsedFormatted(`${minutes}m ${seconds}s`);
+      }, 1000);
+
+      setCurrentInterval(interval);
+    }
+  }, [isInTestMode, dialogOpen]);
+
+  const onMenuClick = (index: number) => {
+    if (!isInTestMode) {
+      setMenu(index);
+      return;
+    }
+
+    // Check if current actionIndex is greater than the number of actions
+    if (actionIndex >= scenarios[scenarioIndex].actions.length) {
+      return;
+    }
+
+    // Get current action
+    const currentAction = scenarios[scenarioIndex].actions[actionIndex];
+
+    // Check if the menu item clicked is the correct one
+    if (currentAction.menuItemIndex === index) {
+      setMenu(index);
+    } else {
+      setNumberOfErrors(numberOfErrors + 1);
+    }
+
+    setNumberOfClicks(numberOfClicks + 1);
+  }
+
+  const onFoodOptionClick = (menuIndex: number, foodIndex: number) => {
+    if (!isInTestMode) {
+      return;
+    }
+
+    // Check if current actionIndex is greater than the number of actions
+    if (actionIndex >= scenarios[scenarioIndex].actions.length) {
+      return;
+    }
+
+    // Get current action
+    const currentAction = scenarios[scenarioIndex].actions[actionIndex];
+
+    // Check if the food option clicked is the correct one
+    if (currentAction.menuItemIndex === menuIndex && currentAction.foodOptionIndex === foodIndex) {
+      // If it is, then move on to the next action
+      setActionIndex(actionIndex + 1);
+    } else {
+      setNumberOfErrors(numberOfErrors + 1);
+    }
+
+    setNumberOfClicks(numberOfClicks + 1);
+  }
+
+  const onCheckoutClick = () => {
+    // If the user has completed all actions, then move on to the next scenario
+    if (actionIndex === scenarios[scenarioIndex].actions.length) {
+      // Check if user has already done 3 attempts
+      if (attemptNumber === 2) {
+        // If on last scenario, then end test
+        if (scenarioIndex === scenarios.length - 1) {
+          navigate("/");
+          return;
+        }
+
+        // If so, then move on to the next scenario
+        setScenarioIndex(scenarioIndex + 1);
+        setAttemptNumber(0);
+      }
+      // If not, then move on to the next attempt
+      else {
+        setAttemptNumber(attemptNumber + 1);
+      }
+
+      setNumberOfClicks(0);
+      setActionIndex(0);
+      setMenu(1);
+
+      setDialogOpen(true);
+
+      setDialogTitle("Complete!");
+
+      setDialogContent(
+        <div>
+          <Typography>You have completed scenario {scenarioIndex} attempt {attemptNumber}</Typography>
+          <Typography>Number of clicks: {numberOfClicks}</Typography>
+          <Typography>Number of errors: {numberOfErrors}</Typography>
+          <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
+        </div>
+      );
+    } else {
+      setNumberOfErrors(numberOfErrors + 1);
+      setNumberOfClicks(numberOfClicks + 1);
+    }
+  }
+
+  const onTestClick = () => {
+    if (isInTestMode) {
+      setActionIndex(0);
+      setIsInTestMode(false);
+    } else {
+      setDialogOpen(true);
+
+      setDialogTitle("Test Mode");
+
+      const currentScenario = scenarios[scenarioIndex];
+
+      let test = currentScenario.actions.map((action, index) => {
+        return (
+          <Typography key={index}>
+            Step {index + 1}. Click on {action.menuItemIndex} menu and select a {action.foodOptionIndex}.
+          </Typography>
+        )
+      });
+
+      setDialogContent((
+        <>
+          {test}
+          <Typography>
+            Lastly click checkout.
+          </Typography>
+        </>
+      ));
+
+      setNumberOfClicks(0);
+      setNumberOfErrors(0);
+    }
+  }
+
+  const onTestStartDialogClose = () => {
+    setDialogOpen(false);
+    setIsInTestMode(!isInTestMode);
+  }
+
   return (
     <Box
       sx={{
@@ -146,34 +376,34 @@ function TestPage() {
         height: "100vh",
       }}
     >
-      <SettingsContainer
-        menu={menu}
-        widths={foodWidths}
-        heights={foodHeights}
-        xSpacings={foodXSpacings}
-        ySpacings={foodYSpacings}
-        setWidths={setFoodWidths}
-        setHeights={setFoodHeights}
-        setXSpacings={setFoodXSpacings}
-        setYSpacings={setFoodYSpacings}
+      <SettingsContainer menu={menu} widths={foodWidths} heights={foodHeights} xSpacings={foodXSpacings}
+                         ySpacings={foodYSpacings}
+                         setWidths={setFoodWidths} setHeights={setFoodHeights} setXSpacings={setFoodXSpacings}
+                         setYSpacings={setFoodYSpacings}
+                         isInTest={isInTestMode} onTestClick={onTestClick}
+                         currentAttemptClicks={numberOfClicks} currentAttemptErrors={numberOfErrors}
+                         scenarioNumber={scenarioIndex + 1} attemptNumber={attemptNumber + 1}
+                         timeElapsedFormatted={timeElapsedFormatted}
+                         actions={scenarios[scenarioIndex].actions} actionIndex={actionIndex}
       />
-
       <MenuContainer
-        handleClick={setMenu}
+        handleClick={onMenuClick}
         rowSpacing={100}
         buttonWidth={100}
         buttonHeight={100}
       />
 
       <FoodOptionsContainer
+        onCheckoutClick={onCheckoutClick}
         layout={menu}
-        onClick={() => {}}
+        onClick={onFoodOptionClick}
         foodOptions={foodOptions}
         xSpacing={foodXSpacings[menu - 1]}
         ySpacing={foodYSpacings[menu - 1]}
         height={foodHeights[menu - 1]}
         width={foodWidths[menu - 1]}
       />
+      <PopUpDialog title={dialogTitle} content={dialogContent} open={dialogOpen} onClose={onTestStartDialogClose}/>
     </Box>
   );
 }
