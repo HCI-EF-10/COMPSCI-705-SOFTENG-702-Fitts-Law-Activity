@@ -216,7 +216,7 @@ function TestPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (currentInterval !== null && dialogOpen) {
+    if (currentInterval !== null) {
       clearInterval(currentInterval);
     }
 
