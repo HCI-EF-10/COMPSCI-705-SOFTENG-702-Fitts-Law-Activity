@@ -10,11 +10,13 @@ import React from "react";
 function HomePage() {
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate("test");
+    navigate("test", {state:
+      {promptValue: prompt,}});
   };
   const [prompt, setPrompt] = React.useState('');
   const handleChange = (event: SelectChangeEvent) => {
     setPrompt(event.target.value);
+    
   };
 
   return (

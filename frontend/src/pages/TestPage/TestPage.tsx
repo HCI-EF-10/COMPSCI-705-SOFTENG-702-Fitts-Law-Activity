@@ -5,7 +5,7 @@ import MenuContainer from "../../components/MenuContainer/MenuContainer";
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
 import { FoodOption } from "../../util/Types/ApiTypes";
 import { Scenario } from "../../util/Types/GeneralTypes";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PopUpDialog } from "../../components/PopUpDialog/PopUpDialog";
 
 const menu1: FoodOption[] = [
@@ -213,6 +213,8 @@ function TestPage() {
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [dialogTitle, setDialogTitle] = React.useState("");
   const [dialogContent, setDialogContent] = React.useState<JSX.Element>((<></>));
+  const {state} = useLocation();
+  console.log(state);
 
   const navigate = useNavigate();
 
