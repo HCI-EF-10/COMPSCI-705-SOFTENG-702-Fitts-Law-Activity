@@ -1,6 +1,7 @@
 import { Button, Box, Typography } from "@mui/material";
 import FoodOptionsItem from "../FoodOptionsItem/FoodOptionsItem";
 import { FoodOption } from "../../util/Types/ApiTypes";
+import { PopUpDialog } from "../PopUpDialog/PopUpDialog";
 
 interface Props {
   layout: number;
@@ -261,18 +262,7 @@ function FoodOptionsContainer({
           </Box>
         </Box>
       )}
-
-      <Button
-        variant="contained"
-        sx={{
-          fontSize: "1rem",
-          paddingX: "2rem",
-          borderRadius: "10rem",
-          marginBottom: "1rem",
-        }}
-      >
-        CHECKOUT
-      </Button>
+      <PopUpDialog></PopUpDialog>
     </Box>
   );
 }
