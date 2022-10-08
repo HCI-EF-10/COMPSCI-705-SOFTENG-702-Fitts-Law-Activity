@@ -1,6 +1,8 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Badge, Box, Button, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 
 interface Props {
+  isInTest: boolean;
   imgSrc: string;
   title: string;
   selected: boolean;
@@ -11,6 +13,7 @@ interface Props {
 }
 
 function FoodOptionsItem({
+  isInTest,
   imgSrc,
   title,
   selected,
@@ -19,6 +22,11 @@ function FoodOptionsItem({
   onClick,
   marginRight,
 }: Props) {
+
+  const [clicked, setClicked] = useState(true);
+  
+  useEffect(() => {if(isInTest) setClicked(true)}, [isInTest]);
+
   return (
     <Box
       sx={{
@@ -29,6 +37,7 @@ function FoodOptionsItem({
         minWidth: "9rem",
       }}
     >
+      <Badge badgeContent={1} color="error" invisible={clicked}>
       <Button
         style={{
           width,
@@ -41,7 +50,14 @@ function FoodOptionsItem({
           justifyContent: "center",
           margin: "auto",
         }}
-        onClick={onClick}
+        onClick={() => {
+          onClick();
+          if(clicked){
+            setClicked(false);
+          } else{
+            setClicked(true);
+          }
+        }}
       >
         <img
           style={{
@@ -51,11 +67,12 @@ function FoodOptionsItem({
           src={imgSrc}
         />
       </Button>
+      </Badge>
 
       <Typography variant="h6" marginY="1rem">
         {title}
       </Typography>
-    </Box>
+    </Box >
   );
 }
 

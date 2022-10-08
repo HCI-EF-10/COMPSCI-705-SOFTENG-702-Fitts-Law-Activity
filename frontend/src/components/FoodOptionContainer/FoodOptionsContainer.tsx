@@ -4,6 +4,7 @@ import { FoodOption } from "../../util/Types/ApiTypes";
 import { PopUpDialog } from "../PopUpDialog/PopUpDialog";
 
 interface Props {
+  isInTest: boolean;
   layout: number;
   width: number;
   height: number;
@@ -15,23 +16,23 @@ interface Props {
 }
 
 function FoodOptionsContainer({
-                                layout,
-                                width,
-                                height,
-                                xSpacing,
-                                ySpacing,
-                                foodOptions,
-                                onClick,
-                                onCheckoutClick,
-                              }: Props) {
+  isInTest,
+  layout,
+  width,
+  height,
+  xSpacing,
+  ySpacing,
+  foodOptions,
+  onClick,
+  onCheckoutClick,
+}: Props) {
   const layoutIndex = layout - 1;
   const widthUnit = layout === 1 ? 0.19 : layout === 2 ? 0.115 : 0.38;
   const heightUnit = layout === 1 ? 0.183 : layout === 2 ? 0.183 : 0.08;
   const buttonWidth = `${width * widthUnit}vw`;
   const buttonHeight = `calc(${height * heightUnit}vh + 2rem)`;
-  const marginRight = `${
-    xSpacing * widthUnit - (layout === 3 ? 50 * widthUnit : 0)
-  }vw`;
+  const marginRight = `${xSpacing * widthUnit - (layout === 3 ? 50 * widthUnit : 0)
+    }vw`;
   const marginBottom = `${ySpacing * heightUnit}vh`;
 
   return (
@@ -58,6 +59,7 @@ function FoodOptionsContainer({
             marginBottom={marginBottom}
           >
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][0].imgSrc}
               title={foodOptions[layoutIndex][0].title}
               selected={foodOptions[layoutIndex][0].selected}
@@ -67,6 +69,7 @@ function FoodOptionsContainer({
               marginRight={marginRight}
             />
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][1].imgSrc}
               title={foodOptions[layoutIndex][1].title}
               selected={foodOptions[layoutIndex][1].selected}
@@ -77,6 +80,7 @@ function FoodOptionsContainer({
           </Box>
           <Box display="flex" flexDirection="row" justifyContent="center">
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][2].imgSrc}
               title={foodOptions[layoutIndex][2].title}
               selected={foodOptions[layoutIndex][2].selected}
@@ -86,6 +90,7 @@ function FoodOptionsContainer({
               marginRight={marginRight}
             />
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][3].imgSrc}
               title={foodOptions[layoutIndex][3].title}
               selected={foodOptions[layoutIndex][3].selected}
@@ -109,6 +114,7 @@ function FoodOptionsContainer({
             marginBottom={marginBottom}
           >
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][0].imgSrc}
               title={foodOptions[layoutIndex][0].title}
               selected={foodOptions[layoutIndex][0].selected}
@@ -118,6 +124,7 @@ function FoodOptionsContainer({
               marginRight={marginRight}
             />
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][1].imgSrc}
               title={foodOptions[layoutIndex][1].title}
               selected={foodOptions[layoutIndex][1].selected}
@@ -127,6 +134,7 @@ function FoodOptionsContainer({
               marginRight={marginRight}
             />
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][2].imgSrc}
               title={foodOptions[layoutIndex][2].title}
               selected={foodOptions[layoutIndex][2].selected}
@@ -137,6 +145,7 @@ function FoodOptionsContainer({
           </Box>
           <Box display="flex" flexDirection="row" justifyContent="center">
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][3].imgSrc}
               title={foodOptions[layoutIndex][3].title}
               selected={foodOptions[layoutIndex][3].selected}
@@ -146,6 +155,7 @@ function FoodOptionsContainer({
               marginRight={marginRight}
             />
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][4].imgSrc}
               title={foodOptions[layoutIndex][4].title}
               selected={foodOptions[layoutIndex][4].selected}
@@ -155,6 +165,7 @@ function FoodOptionsContainer({
               marginRight={marginRight}
             />
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][5].imgSrc}
               title={foodOptions[layoutIndex][5].title}
               selected={foodOptions[layoutIndex][5].selected}
@@ -180,6 +191,7 @@ function FoodOptionsContainer({
           >
             <Box marginBottom={marginBottom}>
               <FoodOptionsItem
+                isInTest={isInTest}
                 imgSrc={foodOptions[layoutIndex][0].imgSrc}
                 title={foodOptions[layoutIndex][0].title}
                 selected={foodOptions[layoutIndex][0].selected}
@@ -190,6 +202,7 @@ function FoodOptionsContainer({
             </Box>
             <Box>
               <FoodOptionsItem
+                isInTest={isInTest}
                 imgSrc={foodOptions[layoutIndex][1].imgSrc}
                 title={foodOptions[layoutIndex][1].title}
                 selected={foodOptions[layoutIndex][1].selected}
@@ -200,6 +213,7 @@ function FoodOptionsContainer({
             </Box>
             <Box marginTop={marginBottom}>
               <FoodOptionsItem
+                isInTest={isInTest}
                 imgSrc={foodOptions[layoutIndex][2].imgSrc}
                 title={foodOptions[layoutIndex][2].title}
                 selected={foodOptions[layoutIndex][2].selected}
@@ -224,6 +238,7 @@ function FoodOptionsContainer({
             marginBottom={marginBottom}
           >
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][0].imgSrc}
               title={foodOptions[layoutIndex][0].title}
               selected={foodOptions[layoutIndex][0].selected}
@@ -233,6 +248,7 @@ function FoodOptionsContainer({
               marginRight={marginRight}
             />
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][1].imgSrc}
               title={foodOptions[layoutIndex][1].title}
               selected={foodOptions[layoutIndex][1].selected}
@@ -243,6 +259,7 @@ function FoodOptionsContainer({
           </Box>
           <Box display="flex" flexDirection="row" justifyContent="center">
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][2].imgSrc}
               title={foodOptions[layoutIndex][2].title}
               selected={foodOptions[layoutIndex][2].selected}
@@ -252,6 +269,7 @@ function FoodOptionsContainer({
               marginRight={marginRight}
             />
             <FoodOptionsItem
+              isInTest={isInTest}
               imgSrc={foodOptions[layoutIndex][3].imgSrc}
               title={foodOptions[layoutIndex][3].title}
               selected={foodOptions[layoutIndex][3].selected}

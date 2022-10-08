@@ -12,7 +12,7 @@ export const PopUpDialog = ({title, content, open, onClose}: props) => {
   return (
     <Dialog open={open} onClose={onClose} aria-labelledby='dialog-title'
             aria-describedby='dialog-description'>
-      <DialogTitle id='dialog-title'>{title}</DialogTitle>
+      <DialogTitle id='dialog-title' variant='h2'>{title}</DialogTitle>
       <DialogContent id='dialog-description'>
         <DialogContent>{content}</DialogContent>
       </DialogContent>

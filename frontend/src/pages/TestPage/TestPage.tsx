@@ -82,6 +82,7 @@ const menu3: FoodOption[] = [
   },
 ];
 const foodOptions = [menu1, menu2, menu3];
+const menuNames = ["Burgers", "Sides", "Desserts"];
 
 const scenario1: Scenario = {
   actions: [
@@ -260,7 +261,6 @@ function TestPage() {
     } else {
       setNumberOfErrors(numberOfErrors + 1);
     }
-
     setNumberOfClicks(numberOfClicks + 1);
   }
 
@@ -318,7 +318,7 @@ function TestPage() {
 
       setDialogContent(
         <div>
-          <Typography>You have completed scenario {scenarioIndex} attempt {attemptNumber}</Typography>
+          <Typography>You have completed scenario {scenarioIndex+1} attempt {attemptNumber+1}</Typography>
           <Typography>Number of clicks: {numberOfClicks}</Typography>
           <Typography>Number of errors: {numberOfErrors}</Typography>
           <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
@@ -337,23 +337,32 @@ function TestPage() {
     } else {
       setDialogOpen(true);
 
-      setDialogTitle("Test Mode");
+      setDialogTitle(`Scenario ${scenarioIndex+1}`);
 
       const currentScenario = scenarios[scenarioIndex];
 
       let test = currentScenario.actions.map((action, index) => {
         return (
-          <Typography key={index}>
-            Step {index + 1}. Click on {action.menuItemIndex} menu and select a {action.foodOptionIndex}.
-          </Typography>
+            <Typography key={index}>
+              Step {index + 1}. Click on {menuNames[action.menuItemIndex]} menu and select a {foodOptions[action.menuItemIndex][action.foodOptionIndex].title}.
+            </Typography>
         )
       });
 
       setDialogContent((
         <>
+        <Typography variant="h3" marginBottom={"10px"}>
+              Please complete the following scenario:
+        </Typography>
           {test}
           <Typography>
-            Lastly click checkout.
+            Then click checkout.
+          </Typography>
+          <Typography marginTop={"20px"}>
+            A timer will start to measure the time taken to finish the scenario upon closing this dialog.
+          </Typography>
+          <Typography marginTop={"20px"}>
+            This scenario will also persist on the settings pane, so you can follow these instructions.
           </Typography>
         </>
       ));
@@ -377,14 +386,14 @@ function TestPage() {
       }}
     >
       <SettingsContainer menu={menu} widths={foodWidths} heights={foodHeights} xSpacings={foodXSpacings}
-                         ySpacings={foodYSpacings}
-                         setWidths={setFoodWidths} setHeights={setFoodHeights} setXSpacings={setFoodXSpacings}
-                         setYSpacings={setFoodYSpacings}
-                         isInTest={isInTestMode} onTestClick={onTestClick}
-                         currentAttemptClicks={numberOfClicks} currentAttemptErrors={numberOfErrors}
-                         scenarioNumber={scenarioIndex + 1} attemptNumber={attemptNumber + 1}
-                         timeElapsedFormatted={timeElapsedFormatted}
-                         actions={scenarios[scenarioIndex].actions} actionIndex={actionIndex}
+        ySpacings={foodYSpacings}
+        setWidths={setFoodWidths} setHeights={setFoodHeights} setXSpacings={setFoodXSpacings}
+        setYSpacings={setFoodYSpacings}
+        isInTest={isInTestMode} onTestClick={onTestClick}
+        currentAttemptClicks={numberOfClicks} currentAttemptErrors={numberOfErrors}
+        scenarioNumber={scenarioIndex + 1} attemptNumber={attemptNumber + 1}
+        timeElapsedFormatted={timeElapsedFormatted}
+        actions={scenarios[scenarioIndex].actions} actionIndex={actionIndex}
       />
       <MenuContainer
         handleClick={onMenuClick}
@@ -394,6 +403,7 @@ function TestPage() {
       />
 
       <FoodOptionsContainer
+        isInTest={isInTestMode}
         onCheckoutClick={onCheckoutClick}
         layout={menu}
         onClick={onFoodOptionClick}
@@ -403,7 +413,7 @@ function TestPage() {
         height={foodHeights[menu - 1]}
         width={foodWidths[menu - 1]}
       />
-      <PopUpDialog title={dialogTitle} content={dialogContent} open={dialogOpen} onClose={onTestStartDialogClose}/>
+      <PopUpDialog title={dialogTitle} content={dialogContent} open={dialogOpen} onClose={onTestStartDialogClose} />
     </Box>
   );
 }
