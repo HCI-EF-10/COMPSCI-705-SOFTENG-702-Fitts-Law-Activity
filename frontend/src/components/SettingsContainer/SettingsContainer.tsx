@@ -139,7 +139,7 @@ function SettingsContainer({
     >
       <Box display="flex" flexDirection="row">
         <Typography variant="h2">Settings</Typography>
-        <HTMLTooltip
+        {/* <HTMLTooltip
           button={<HelpIcon/>}
           htmlFrag={
             <div>
@@ -148,7 +148,7 @@ function SettingsContainer({
               cleaner look with less styling
             </div>
           }
-        />
+        /> */}
       </Box>
       {!isInTest && (<>
       <Typography variant="subtitle1" marginTop="0.25rem">
@@ -220,7 +220,7 @@ function SettingsContainer({
         {isInTest && (<Typography variant="h3" padding="10px">Please complete the following scenario:</Typography>)}
         {isInTest && actions.map((action, index) => (
           <Typography key={index} sx={{color: actionIndex > index ? "green" : "red"}}>
-            Step {index + 1}. Click on {menuNames[action.menuItemIndex]} menu and select a {foodOptions[action.menuItemIndex][action.foodOptionIndex].title}.
+            Step {index + 1}. Click on {menuNames[action.menuItemIndex-1]} menu and select a {foodOptions[action.menuItemIndex-1][action.foodOptionIndex-1].title}.
           </Typography>
         ))}
         {isInTest && (

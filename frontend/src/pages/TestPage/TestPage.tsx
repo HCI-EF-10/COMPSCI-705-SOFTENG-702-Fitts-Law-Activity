@@ -344,7 +344,7 @@ function TestPage() {
       let test = currentScenario.actions.map((action, index) => {
         return (
             <Typography key={index}>
-              Step {index + 1}. Click on {menuNames[action.menuItemIndex]} menu and select a {foodOptions[action.menuItemIndex][action.foodOptionIndex].title}.
+              Step {index + 1}. Click on {menuNames[action.menuItemIndex-1]} menu and select a {foodOptions[action.menuItemIndex-1][action.foodOptionIndex-1].title}.
             </Typography>
         )
       });
