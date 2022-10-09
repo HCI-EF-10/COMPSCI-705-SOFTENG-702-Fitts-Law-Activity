@@ -326,21 +326,45 @@ function TestPage() {
       setDialogTitle("Complete!");
 
       setDialogContent(
-        <div style={{ marginBottom: "10px", }}>
+        <div style={{ marginBottom: "0px", }}>
           <Typography>You have completed scenario {scenarioIndex + 1} attempt {attemptNumber + 1}</Typography>
           <Typography>Number of clicks: {numberOfClicks}</Typography>
           <Typography>Number of errors: {numberOfErrors}</Typography>
           <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
-          {/* for activity based or whatever is first ig */}
+          {/* For Activity Based Prompts*/}
           <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
-            <div style={attemptNumber != 0 && previousTime < timeElapsed && previousTime != 0 ? { display: "flex" } : { display: "none" }}>
-              <Typography>The width on your buttons for the burger menu are literally mid</Typography>
+            <div style={attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0 ? { display: "flex" } : { display: "none" }}>
+              <Typography>You have spent a longer amount of time this attempt than your previous attempt. </Typography>
             </div>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
             <div style={numberOfErrors > 0 ? { display: "flex" } : { display: "none" }}>
-              <Typography>The width on your buttons for the burger menu are literally mid</Typography>
+              <Typography>You had {numberOfErrors} click errors.</Typography>
             </div>
-            <div style={(numberOfErrors > 0) || (attemptNumber != 0 && previousTime < timeElapsed && previousTime != 0) ? { display: "flex" } : { display: "none" }}>
-              <Typography>The width on your buttons for the burger menu are literally mid</Typography>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? { display: "flex" } : { display: "none" }}>
+              <Typography>Have you considered changing the width and height?</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? { display: "flex" } : { display: "none" }}>
+              <Typography>How about altering the spaces between the buttons?</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={(numberOfErrors === 0) && previousTime > timeElapsed && previousTime !== 0 ? { display: "flex" } : { display: "none" }}>
+              <Typography>Well done! You have completed the scenario without any errors.</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={(numberOfErrors === 0) && previousTime > timeElapsed && previousTime !== 0 ? { display: "flex" } : { display: "none" }}>
+              <Typography>However, do keep note that there may still be ways to improve the Fitts' Law.</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 2) ? { display: "flex" } : { display: "none" }}>
+              <Typography>Now it is time to move onto the next scenario.</Typography>
             </div>
           </div>
           {/* for the other one */}
