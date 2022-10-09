@@ -25,7 +25,7 @@ function FoodOptionsItem({
 
   const [clicked, setClicked] = useState(true);
   
-  useEffect(() => {if(isInTest) setClicked(true)}, [isInTest]);
+  useEffect(() => {setClicked(true)}, [isInTest]);
 
   return (
     <Box
