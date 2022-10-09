@@ -26,7 +26,6 @@ function FoodOptionsContainer({
   onClick,
   onCheckoutClick,
 }: Props) {
-  const layoutIndex = layout - 1;
   const widthUnit = layout === 1 ? 0.19 : layout === 2 ? 0.115 : 0.38;
   const heightUnit = layout === 1 ? 0.183 : layout === 2 ? 0.183 : 0.08;
   const buttonWidth = `${width * widthUnit}vw`;

@@ -141,6 +141,9 @@ const scenario3: Scenario = {
 
 const scenarios: Scenario[] = [scenario1, scenario2, scenario3];
 
+
+
+
 function TestPage() {
   const [menu, setMenu] = React.useState(1);
   const [foodWidth1, setFoodWidth1] = React.useState(0);
@@ -213,9 +216,8 @@ function TestPage() {
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [dialogTitle, setDialogTitle] = React.useState("");
   const [dialogContent, setDialogContent] = React.useState<JSX.Element>((<></>));
-  const {state} = useLocation();
-  console.log(state);
-
+  const state = useLocation().state as {promptValue: number};
+  const promptValue = state.promptValue;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -319,11 +321,12 @@ function TestPage() {
       setDialogTitle("Complete!");
 
       setDialogContent(
-        <div>
+        <div style={{marginBottom: "10px",}}>
           <Typography>You have completed scenario {scenarioIndex+1} attempt {attemptNumber+1}</Typography>
           <Typography>Number of clicks: {numberOfClicks}</Typography>
           <Typography>Number of errors: {numberOfErrors}</Typography>
           <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
+          <Typography>test: {promptValue}</Typography>
         </div>
       );
     } else {
@@ -339,23 +342,23 @@ function TestPage() {
     } else {
       setDialogOpen(true);
 
-      setDialogTitle(`Scenario ${scenarioIndex+1}`);
+      setDialogTitle(`Scenario ${scenarioIndex + 1}`);
 
       const currentScenario = scenarios[scenarioIndex];
 
       let test = currentScenario.actions.map((action, index) => {
         return (
-            <Typography key={index}>
-              Step {index + 1}. Click on {menuNames[action.menuItemIndex-1]} menu and select a {foodOptions[action.menuItemIndex-1][action.foodOptionIndex-1].title}.
-            </Typography>
+          <Typography key={index}>
+            Step {index + 1}. Click on {menuNames[action.menuItemIndex - 1]} menu and select a {foodOptions[action.menuItemIndex - 1][action.foodOptionIndex - 1].title}.
+          </Typography>
         )
       });
 
       setDialogContent((
         <>
-        <Typography variant="h3" marginBottom={"10px"}>
-              Please complete the following scenario:
-        </Typography>
+          <Typography variant="h3" marginBottom={"10px"}>
+            Please complete the following scenario:
+          </Typography>
           {test}
           <Typography>
             Then click checkout.
