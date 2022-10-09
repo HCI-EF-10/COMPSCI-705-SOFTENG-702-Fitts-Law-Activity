@@ -212,6 +212,8 @@ function TestPage() {
   const [attemptNumber, setAttemptNumber] = React.useState(0);
   const [scenarioIndex, setScenarioIndex] = React.useState(0);
   const [actionIndex, setActionIndex] = React.useState(0);
+  const [previousTime, setPreviousTime] = React.useState(0);
+  const [timeElapsed, setTimeElapsed] = React.useState(0);
 
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [dialogTitle, setDialogTitle] = React.useState("");
@@ -222,6 +224,8 @@ function TestPage() {
 
   useEffect(() => {
     if (currentInterval !== null) {
+
+      setPreviousTime(timeElapsed);
       clearInterval(currentInterval);
     }
 
@@ -231,9 +235,10 @@ function TestPage() {
 
       // Start interval to update time elapsed
       const interval = setInterval(() => {
-        const timeElapsed = Date.now() - newStartTime;
+        const localTimeElapsed = Date.now() - newStartTime;
 
-        const test = new Date(timeElapsed);
+        setTimeElapsed(localTimeElapsed);
+        const test = new Date(localTimeElapsed);
 
         const minutes = test.getMinutes();
         const seconds = test.getSeconds();
@@ -328,7 +333,13 @@ function TestPage() {
           <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
           {/* for activity based or whatever is first ig */}
           <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
-            <div style={foodWidth1 >= 50 ? { display: "flex" } : { display: "none" }}>
+            <div style={attemptNumber != 0 && previousTime < timeElapsed && previousTime != 0 ? { display: "flex" } : { display: "none" }}>
+              <Typography>The width on your buttons for the burger menu are literally mid</Typography>
+            </div>
+            <div style={numberOfErrors > 0 ? { display: "flex" } : { display: "none" }}>
+              <Typography>The width on your buttons for the burger menu are literally mid</Typography>
+            </div>
+            <div style={(numberOfErrors > 0) || (attemptNumber != 0 && previousTime < timeElapsed && previousTime != 0) ? { display: "flex" } : { display: "none" }}>
               <Typography>The width on your buttons for the burger menu are literally mid</Typography>
             </div>
           </div>
