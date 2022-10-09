@@ -216,7 +216,7 @@ function TestPage() {
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [dialogTitle, setDialogTitle] = React.useState("");
   const [dialogContent, setDialogContent] = React.useState<JSX.Element>((<></>));
-  const state = useLocation().state as {promptValue: number};
+  const state = useLocation().state as { promptValue: number };
   const promptValue = state.promptValue;
   const navigate = useNavigate();
 
@@ -321,12 +321,22 @@ function TestPage() {
       setDialogTitle("Complete!");
 
       setDialogContent(
-        <div style={{marginBottom: "10px",}}>
-          <Typography>You have completed scenario {scenarioIndex+1} attempt {attemptNumber+1}</Typography>
+        <div style={{ marginBottom: "10px", }}>
+          <Typography>You have completed scenario {scenarioIndex + 1} attempt {attemptNumber + 1}</Typography>
           <Typography>Number of clicks: {numberOfClicks}</Typography>
           <Typography>Number of errors: {numberOfErrors}</Typography>
           <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
-          <Typography>test: {promptValue}</Typography>
+          {/* for activity based or whatever is first ig */}
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={foodWidth1 >= 50 ? { display: "flex" } : { display: "none" }}>
+              <Typography>The width on your buttons for the burger menu are literally mid</Typography>
+            </div>
+          </div>
+          {/* for the other one */}
+          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
+            {/* can do this one based on value of something else */}
+            <Typography>ig this is staying the same no matter what</Typography>
+          </div>
         </div>
       );
     } else {
