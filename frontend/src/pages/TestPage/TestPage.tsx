@@ -92,15 +92,15 @@ const scenario1: Scenario = {
     },
     {
       menuItemIndex: 1,
+      foodOptionIndex: 4,
+    },
+    {
+      menuItemIndex: 1,
       foodOptionIndex: 2,
     },
     {
       menuItemIndex: 1,
       foodOptionIndex: 3,
-    },
-    {
-      menuItemIndex: 1,
-      foodOptionIndex: 4,
     },
   ]
 }
@@ -109,21 +109,45 @@ const scenario2: Scenario = {
   actions: [
     {
       menuItemIndex: 1,
+      foodOptionIndex: 4,
+    },
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 3,
+    },
+    {
+      menuItemIndex: 1,
       foodOptionIndex: 1,
+    },
+    {
+      menuItemIndex: 2,
+      foodOptionIndex: 5,
     },
     {
       menuItemIndex: 2,
       foodOptionIndex: 1,
     },
     {
-      menuItemIndex: 3,
-      foodOptionIndex: 1,
+      menuItemIndex: 2,
+      foodOptionIndex: 3,
+    },
+    {
+      menuItemIndex: 2,
+      foodOptionIndex: 6,
     },
   ]
 }
 
 const scenario3: Scenario = {
   actions: [
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 2,
+    },
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 3,
+    },
     {
       menuItemIndex: 1,
       foodOptionIndex: 1,
@@ -133,8 +157,28 @@ const scenario3: Scenario = {
       foodOptionIndex: 1,
     },
     {
+      menuItemIndex: 2,
+      foodOptionIndex: 3,
+    },
+    {
+      menuItemIndex: 2,
+      foodOptionIndex: 4,
+    },
+    {
+      menuItemIndex: 2,
+      foodOptionIndex: 2,
+    },
+    {
+      menuItemIndex: 3,
+      foodOptionIndex: 2,
+    },
+    {
       menuItemIndex: 3,
       foodOptionIndex: 1,
+    },
+    {
+      menuItemIndex: 3,
+      foodOptionIndex: 3,
     },
   ]
 }
@@ -210,7 +254,7 @@ function TestPage() {
   const [numberOfErrors, setNumberOfErrors] = React.useState(0);
 
   const [attemptNumber, setAttemptNumber] = React.useState(0);
-  const [scenarioIndex, setScenarioIndex] = React.useState(0);
+  const [scenarioIndex, setScenarioIndex] = React.useState(2);
   const [actionIndex, setActionIndex] = React.useState(0);
   const [previousTime, setPreviousTime] = React.useState(0);
   const [timeElapsed, setTimeElapsed] = React.useState(0);
@@ -392,6 +436,7 @@ function TestPage() {
       const currentScenario = scenarios[scenarioIndex];
 
       let test = currentScenario.actions.map((action, index) => {
+        console.log(index)
         return (
           <Typography key={index}>
             Step {index + 1}. Click on {menuNames[action.menuItemIndex - 1]} menu and select a {foodOptions[action.menuItemIndex - 1][action.foodOptionIndex - 1].title}.

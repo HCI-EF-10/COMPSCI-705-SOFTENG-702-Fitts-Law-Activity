@@ -135,7 +135,7 @@ function FoodOptionsContainer({
             <FoodOptionsItem
               isInTest={isInTest}
               imgSrc={foodOptions[1][2].imgSrc}
-              title={foodOptions[1][1].title}
+              title={foodOptions[1][2].title}
               selected={foodOptions[1][2].selected}
               onClick={() => onClick(2, 3)}
               width={buttonWidth}

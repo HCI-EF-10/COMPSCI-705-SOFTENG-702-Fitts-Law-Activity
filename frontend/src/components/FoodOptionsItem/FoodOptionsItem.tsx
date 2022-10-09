@@ -37,7 +37,7 @@ function FoodOptionsItem({
         minWidth: "9rem",
       }}
     >
-      <Badge badgeContent={1} color="error" invisible={clicked}>
+      <Badge badgeContent={1} color="error" invisible={clicked || !isInTest}>
       <Button
         style={{
           width,
