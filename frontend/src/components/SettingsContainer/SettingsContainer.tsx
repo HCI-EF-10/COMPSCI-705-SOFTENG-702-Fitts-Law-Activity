@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Grid, Button, Box, Typography, IconButton } from "@mui/material";
+import {Grid, Button, Box, Typography, IconButton, Switch} from "@mui/material";
 import MenuSlider from "../../components/MenuSlider/MenuSlider";
 import { useNavigate } from "react-router-dom";
 import HelpIcon from "@mui/icons-material/Help";
@@ -26,6 +26,7 @@ interface Props {
   timeElapsedFormatted: string;
   actions: Action[];
   actionIndex: number;
+  handleSwitchClick: () => void;
 }
 
 const menu1: FoodOption[] = [
@@ -122,7 +123,8 @@ function SettingsContainer({
                              currentAttemptErrors,
                              timeElapsedFormatted,
                              actions,
-                             actionIndex
+                             actionIndex,
+                             handleSwitchClick
                            }: Props) {
   return (
     <Box
@@ -154,6 +156,8 @@ function SettingsContainer({
       <Typography variant="subtitle1" marginTop="0.25rem">
         Selected component: Menu {menu} item
       </Typography>
+
+      <Switch onChange={handleSwitchClick} />
 
       <Box
         sx={{

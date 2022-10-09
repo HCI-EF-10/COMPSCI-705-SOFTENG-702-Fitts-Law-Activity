@@ -199,6 +199,8 @@ function TestPage() {
     setFoodYSpacing4,
   ];
 
+  const [isMenuSelected, setIsMenuSelected] = React.useState(true);
+
   const [isInTestMode, setIsInTestMode] = React.useState(false);
   const [timeElapsedFormatted, setTimeElapsedFormatted] = React.useState("0m 0s");
   const [currentInterval, setCurrentInterval] = React.useState<any>();
@@ -240,6 +242,14 @@ function TestPage() {
       setCurrentInterval(interval);
     }
   }, [isInTestMode, dialogOpen]);
+
+  const onSelectComponentSwitchClick = () => {
+    if (!isInTestMode) {
+      setIsMenuSelected(!isMenuSelected);
+      console.log(isMenuSelected);
+    }
+    return
+  }
 
   const onMenuClick = (index: number) => {
     if (!isInTestMode) {
@@ -394,6 +404,7 @@ function TestPage() {
         scenarioNumber={scenarioIndex + 1} attemptNumber={attemptNumber + 1}
         timeElapsedFormatted={timeElapsedFormatted}
         actions={scenarios[scenarioIndex].actions} actionIndex={actionIndex}
+        handleSwitchClick={onSelectComponentSwitchClick}
       />
       <MenuContainer
         handleClick={onMenuClick}
