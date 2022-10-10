@@ -187,8 +187,6 @@ const scenario3: Scenario = {
 const scenarios: Scenario[] = [scenario1, scenario2, scenario3];
 
 
-
-
 function TestPage() {
   const [menu, setMenu] = React.useState(1);
   const [foodWidth1, setFoodWidth1] = React.useState(0);
@@ -254,8 +252,8 @@ function TestPage() {
   const [numberOfClicks, setNumberOfClicks] = React.useState(0);
   const [numberOfErrors, setNumberOfErrors] = React.useState(0);
 
-  const [attemptNumber, setAttemptNumber] = React.useState(0);
-  const [scenarioIndex, setScenarioIndex] = React.useState(0);
+  const [attemptNumber, setAttemptNumber] = React.useState(2);
+  const [scenarioIndex, setScenarioIndex] = React.useState(2);
   const [actionIndex, setActionIndex] = React.useState(0);
   const [previousTime, setPreviousTime] = React.useState(0);
   const [timeElapsed, setTimeElapsed] = React.useState(0);
@@ -349,7 +347,27 @@ function TestPage() {
       if (attemptNumber === 2) {
         // If on last scenario, then end test
         if (scenarioIndex === scenarios.length - 1) {
-          navigate("/");
+          setDialogOpen(true);
+
+          setDialogTitle("Fully Complete!")
+
+          setDialogContent(
+            <div style={{marginBottom: "0px",}}>
+              <Typography>You have successfully completed all the scenarios!</Typography>
+              <Typography>Your final statistics for Scenario 3 Attempt 3 were:</Typography>
+              <Typography>Number of clicks: {numberOfClicks}</Typography>
+              <Typography>Number of errors: {numberOfErrors}</Typography>
+              <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
+              <Typography>You will now be redirected back to the main page where you could restart or maybe attempt
+                these scenarios again with {promptValue === 1 ? "Theory-based" : "Context-based"} prompts
+                instead</Typography>
+            </div>
+          )
+
+          setInterval(() => {
+            navigate("/");
+          }, 5000)
+
           return;
         }
 
@@ -371,79 +389,87 @@ function TestPage() {
       setDialogTitle("Complete!");
 
       setDialogContent(
-        <div style={{ marginBottom: "0px", }}>
+        <div style={{marginBottom: "0px",}}>
           <Typography>You have completed scenario {scenarioIndex + 1} attempt {attemptNumber + 1}</Typography>
           <Typography>Number of clicks: {numberOfClicks}</Typography>
           <Typography>Number of errors: {numberOfErrors}</Typography>
           <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
           {/* For Context Based Prompts*/}
-          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
-            <div style={attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0 ? { display: "flex" } : { display: "none" }}>
+          <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
+            <div
+              style={attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0 ? {display: "flex"} : {display: "none"}}>
               <Typography>You have spent a longer amount of time this attempt than your previous attempt. </Typography>
             </div>
           </div>
-          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
-            <div style={numberOfErrors > 0 ? { display: "flex" } : { display: "none" }}>
+          <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
+            <div style={numberOfErrors > 0 ? {display: "flex"} : {display: "none"}}>
               <Typography>You had {numberOfErrors} click errors.</Typography>
             </div>
           </div>
-          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
-            <div style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? { display: "flex" } : { display: "none" }}>
+          <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
+            <div
+              style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? {display: "flex"} : {display: "none"}}>
               <Typography>Have you considered changing the width and height?</Typography>
             </div>
           </div>
-          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
-            <div style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? { display: "flex" } : { display: "none" }}>
+          <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
+            <div
+              style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? {display: "flex"} : {display: "none"}}>
               <Typography>How about altering the spaces between the buttons?</Typography>
             </div>
           </div>
-          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
-            <div style={(numberOfErrors === 0) && previousTime > timeElapsed && previousTime !== 0 ? { display: "flex" } : { display: "none" }}>
+          <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
+            <div
+              style={(numberOfErrors === 0) && previousTime > timeElapsed && previousTime !== 0 ? {display: "flex"} : {display: "none"}}>
               <Typography>Well done! You have completed the scenario without any errors.</Typography>
             </div>
           </div>
-          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
-            <div style={(numberOfErrors === 0) && previousTime > timeElapsed && previousTime !== 0 ? { display: "flex" } : { display: "none" }}>
+          <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
+            <div
+              style={(numberOfErrors === 0) && previousTime > timeElapsed && previousTime !== 0 ? {display: "flex"} : {display: "none"}}>
               <Typography>However, do keep note that there may still be ways to improve the Fitts' Law.</Typography>
             </div>
           </div>
-          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
-            <div style={(attemptNumber === 2) && (scenarioIndex !== 2) ? { display: "flex" } : { display: "none" }}>
+          <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
+            <div style={(attemptNumber === 2) && (scenarioIndex !== 2) ? {display: "flex"} : {display: "none"}}>
               <Typography>Now it is time to move onto the next scenario.</Typography>
             </div>
-            <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
-              <div style={(attemptNumber === 2) && (scenarioIndex === 2) ? { display: "flex" } : { display: "none" }}>
-              <Typography>That is the end of the activity. Thank you for participating!</Typography>
+            <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
+              <div style={(attemptNumber === 2) && (scenarioIndex === 2) ? {display: "flex"} : {display: "none"}}>
+                <Typography>That is the end of the activity. Thank you for participating!</Typography>
               </div>
             </div>
           </div>
           {/* Theory based prompts */}
-          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
-            <div style={(attemptNumber === 0) ? { display: "flex" } : { display: "none" }}>
-            <Typography>A brief summary of Fitts' Law is provided in the image below:  </Typography>
+          <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
+            <div style={(attemptNumber === 0) ? {display: "flex"} : {display: "none"}}>
+              <Typography>A brief summary of Fitts' Law is provided in the image below: </Typography>
             </div>
           </div>
-          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
-            <div style={(attemptNumber === 0) ? { display: "flex" } : { display: "none" }}>
-            <img src={require('../../images/fittslaw.jpg')} alt = "fittslawimage" style={{width: 525, height: 250}} />
+          <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
+            <div style={(attemptNumber === 0) ? {display: "flex"} : {display: "none"}}>
+              <img src={require('../../images/fittslaw.jpg')} alt="fittslawimage" style={{width: 525, height: 250}}/>
             </div>
           </div>
-          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
-            <div style={(attemptNumber === 1) ? { display: "flex" } : { display: "none" }}>
-            <Typography>Fitts' law states that the larger the target is, the easier it is to acquire the target, thus shorter time to acquire the target.</Typography>
+          <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
+            <div style={(attemptNumber === 1) ? {display: "flex"} : {display: "none"}}>
+              <Typography>Fitts' law states that the larger the target is, the easier it is to acquire the target, thus
+                shorter time to acquire the target.</Typography>
             </div>
           </div>
-          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
-            <div style={(attemptNumber === 2) ? { display: "flex" } : { display: "none" }}>
-            <img src = {require ('../../images/fittslaw2.jpeg')} alt= "fittslawgraph" style = {{width:525, height: 250}}/>
+          <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
+            <div style={(attemptNumber === 2) ? {display: "flex"} : {display: "none"}}>
+              <img src={require('../../images/fittslaw2.jpeg')} alt="fittslawgraph" style={{width: 525, height: 250}}/>
             </div>
           </div>
-          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
-            <div style={(attemptNumber === 2) ? { display: "flex" } : { display: "none" }}>
-            <Typography>Fitts' law provides a model of human movement, which can accurately predict the amount of time taken to move to and select a target. It is applied to the design of interactive objects in graphical displays</Typography>
+          <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
+            <div style={(attemptNumber === 2) ? {display: "flex"} : {display: "none"}}>
+              <Typography>Fitts' law provides a model of human movement, which can accurately predict the amount of time
+                taken to move to and select a target. It is applied to the design of interactive objects in graphical
+                displays</Typography>
             </div>
           </div>
-          
+
         </div>
       );
     } else {
@@ -467,7 +493,8 @@ function TestPage() {
         console.log(index)
         return (
           <Typography key={index}>
-            Step {index + 1}. Click on {menuNames[action.menuItemIndex - 1]} menu and select a {foodOptions[action.menuItemIndex - 1][action.foodOptionIndex - 1].title}.
+            Step {index + 1}. Click on {menuNames[action.menuItemIndex - 1]} menu and select
+            a {foodOptions[action.menuItemIndex - 1][action.foodOptionIndex - 1].title}.
           </Typography>
         )
       });
@@ -509,14 +536,14 @@ function TestPage() {
       }}
     >
       <SettingsContainer menu={menu} widths={foodWidths} heights={foodHeights} xSpacings={foodXSpacings}
-        ySpacings={foodYSpacings}
-        setWidths={setFoodWidths} setHeights={setFoodHeights} setXSpacings={setFoodXSpacings}
-        setYSpacings={setFoodYSpacings}
-        isInTest={isInTestMode} onTestClick={onTestClick}
-        currentAttemptClicks={numberOfClicks} currentAttemptErrors={numberOfErrors}
-        scenarioNumber={scenarioIndex + 1} attemptNumber={attemptNumber + 1}
-        timeElapsedFormatted={timeElapsedFormatted}
-        actions={scenarios[scenarioIndex].actions} actionIndex={actionIndex}
+                         ySpacings={foodYSpacings}
+                         setWidths={setFoodWidths} setHeights={setFoodHeights} setXSpacings={setFoodXSpacings}
+                         setYSpacings={setFoodYSpacings}
+                         isInTest={isInTestMode} onTestClick={onTestClick}
+                         currentAttemptClicks={numberOfClicks} currentAttemptErrors={numberOfErrors}
+                         scenarioNumber={scenarioIndex + 1} attemptNumber={attemptNumber + 1}
+                         timeElapsedFormatted={timeElapsedFormatted}
+                         actions={scenarios[scenarioIndex].actions} actionIndex={actionIndex}
       />
       <MenuContainer
         handleClick={onMenuClick}
@@ -536,7 +563,7 @@ function TestPage() {
         height={foodHeights[menu - 1]}
         width={foodWidths[menu - 1]}
       />
-      <PopUpDialog title={dialogTitle} content={dialogContent} open={dialogOpen} onClose={onTestStartDialogClose} />
+      <PopUpDialog title={dialogTitle} content={dialogContent} open={dialogOpen} onClose={onTestStartDialogClose}/>
     </Box>
   );
 }
