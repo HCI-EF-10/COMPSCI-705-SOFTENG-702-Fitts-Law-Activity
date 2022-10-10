@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { Box, Typography } from "@mui/material";
+import React, {useEffect} from "react";
+import {Box, Typography} from "@mui/material";
 import SettingsContainer from "../../components/SettingsContainer/SettingsContainer";
 import MenuContainer from "../../components/MenuContainer/MenuContainer";
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
-import { FoodOption } from "../../util/Types/ApiTypes";
-import { Scenario } from "../../util/Types/GeneralTypes";
-import { useLocation, useNavigate } from "react-router-dom";
-import { PopUpDialog } from "../../components/PopUpDialog/PopUpDialog";
+import {FoodOption} from "../../util/Types/ApiTypes";
+import {Scenario} from "../../util/Types/GeneralTypes";
+import {useLocation, useNavigate} from "react-router-dom";
+import {PopUpDialog} from "../../components/PopUpDialog/PopUpDialog";
 
 
 const menu1: FoodOption[] = [
@@ -366,6 +366,7 @@ function TestPage() {
 
           setInterval(() => {
             navigate("/");
+            window.location.reload();
           }, 5000)
 
           return;
@@ -395,7 +396,7 @@ function TestPage() {
           <Typography>Number of errors: {numberOfErrors}</Typography>
           <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
           <br></br>
-          <Typography display = "block" variant = "h3">Feedback</Typography>
+          <Typography display="block" variant="h3">Feedback</Typography>
           {/* For Context Based Prompts*/}
           <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
             <div
@@ -411,24 +412,25 @@ function TestPage() {
           <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
             <div
               style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? {display: "flex"} : {display: "none"}}>
-              <Typography>Have you considered changing the <span style={{ fontWeight:"bold" }}>width </span> and <span style={{ fontWeight:"bold" }}>height </span>?</Typography>
+              <Typography>Have you considered changing the <span style={{fontWeight: "bold"}}>width </span> and <span
+                style={{fontWeight: "bold"}}>height </span>?</Typography>
             </div>
           </div>
           <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
             <div
               style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? {display: "flex"} : {display: "none"}}>
-              <Typography>How about altering the <span style={{ fontWeight:"bold" }}>spaces </span> between the buttons?</Typography>
+              <Typography>How about altering the <span style={{fontWeight: "bold"}}>spaces </span> between the buttons?</Typography>
             </div>
           </div>
           <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
             <div
-              style={(numberOfErrors === 0) && ((attemptNumber===0) || (previousTime > timeElapsed && previousTime !== 0)) ? {display: "flex"} : {display: "none"}}>
+              style={(numberOfErrors === 0) && ((attemptNumber === 0) || (previousTime > timeElapsed && previousTime !== 0)) ? {display: "flex"} : {display: "none"}}>
               <Typography>Well done! You have completed the scenario without any errors.</Typography>
             </div>
           </div>
           <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
             <div
-              style={(numberOfErrors === 0) && ((attemptNumber ===0) || (previousTime > timeElapsed && previousTime !== 0))  ? {display: "flex"} : {display: "none"}}>
+              style={(numberOfErrors === 0) && ((attemptNumber === 0) || (previousTime > timeElapsed && previousTime !== 0)) ? {display: "flex"} : {display: "none"}}>
               <Typography>However, do keep note that there may still be ways to improve the Fitts' Law.</Typography>
             </div>
           </div>
@@ -445,7 +447,8 @@ function TestPage() {
           {/* Theory based prompts */}
           <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
             <div style={(attemptNumber === 0) ? {display: "flex"} : {display: "none"}}>
-              <Typography>A brief summary of <span style={{ fontWeight:"bold" }}>Fitts' Law </span> is provided in the image below: </Typography>
+              <Typography>A brief summary of <span style={{fontWeight: "bold"}}>Fitts' Law </span> is provided in the
+                image below: </Typography>
             </div>
           </div>
           <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
@@ -455,8 +458,10 @@ function TestPage() {
           </div>
           <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
             <div style={(attemptNumber === 1) ? {display: "flex"} : {display: "none"}}>
-              <Typography>Fitts' law states that the <span style={{ fontWeight: "bold" }}>larger </span> the target is, the <span style={{ fontWeight: "bold" }}>easier </span>
-                it is to acquire the target, thus <span style={{ fontWeight: "bold" }}>shorter time </span> to acquire the target.</Typography>
+              <Typography>Fitts' law states that the <span style={{fontWeight: "bold"}}>larger </span> the target is,
+                the <span style={{fontWeight: "bold"}}>easier </span>
+                it is to acquire the target, thus <span style={{fontWeight: "bold"}}>shorter time </span> to acquire the
+                target.</Typography>
             </div>
           </div>
           <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
@@ -466,8 +471,10 @@ function TestPage() {
           </div>
           <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
             <div style={(attemptNumber === 2) ? {display: "flex"} : {display: "none"}}>
-              <Typography>Fitts' law provides a model of <span style={{ fontWeight:"bold" }}>human movement </span>, which can <span style={{ fontWeight:"bold" }}>accurately predict </span> the amount of time
-                taken to move to and select a target. It is applied to the design of <span style={{ fontWeight:"bold" }}>interactive objects</span> in graphical
+              <Typography>Fitts' law provides a model of <span style={{fontWeight: "bold"}}>human movement </span>,
+                which can <span style={{fontWeight: "bold"}}>accurately predict </span> the amount of time
+                taken to move to and select a target. It is applied to the design of <span style={{fontWeight: "bold"}}>interactive objects</span> in
+                graphical
                 displays</Typography>
             </div>
           </div>
@@ -511,7 +518,8 @@ function TestPage() {
             Then click checkout.
           </Typography>
           <Typography marginTop={"20px"}>
-            A <span style={{ fontWeight:"bold" }}>timer </span> will start to measure the time taken to finish the scenario upon closing this dialog.
+            A <span style={{fontWeight: "bold"}}>timer </span> will start to measure the time taken to finish the
+            scenario upon closing this dialog.
           </Typography>
           <Typography marginTop={"20px"}>
             This scenario will also persist on the settings pane, so you can follow these instructions.
