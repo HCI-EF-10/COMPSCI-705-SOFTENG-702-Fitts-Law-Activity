@@ -7,7 +7,6 @@ import { FoodOption } from "../../util/Types/ApiTypes";
 import { Scenario } from "../../util/Types/GeneralTypes";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PopUpDialog } from "../../components/PopUpDialog/PopUpDialog";
-import fittlaw from "../../images/fittslaw.jpg"
 
 
 const menu1: FoodOption[] = [
@@ -516,9 +515,9 @@ function TestPage() {
       />
       <MenuContainer
         handleClick={onMenuClick}
-        rowSpacing={100}
-        buttonWidth={100}
-        buttonHeight={100}
+        rowSpacing={50}
+        buttonWidth={50}
+        buttonHeight={70}
       />
 
       <FoodOptionsContainer
