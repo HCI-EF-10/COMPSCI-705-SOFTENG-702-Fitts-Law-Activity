@@ -418,8 +418,19 @@ function TestPage() {
           </div>
           {/* for the other one */}
           <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
-            {/* can do this one based on value of something else */}
-            <Typography>ig this is staying the same no matter what</Typography>
+            <div style={(attemptNumber === 0) ? { display: "flex" } : { display: "none" }}>
+            <Typography>log2 (2 d/w) is the Index of Difficulty (ID), a measurement that quantifies how hard it is to acquire the target.</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 1) ? { display: "flex" } : { display: "none" }}>
+            <Typography>The formula for Fitts' law is: t = a + b log2 (2 d/w) which means the estimated time to acquire the target is proportional to the index of difficulty.</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 2) ? { display: "flex" } : { display: "none" }}>
+            <Typography>Fitts' law states that the larger the target is, the easier it is to acquire the target, thus shorter time to acquire the target</Typography>
+            </div>
           </div>
         </div>
       );
