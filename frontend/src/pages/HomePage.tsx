@@ -43,15 +43,15 @@ function HomePage() {
         >
           <Typography>
             <span style={{ fontSize: "1.5rem", fontWeight: 800 }}>Hello! </span>
-            Our app is designed for users to learn and practice Fitts’ Law in
+            Our app is designed for users to learn and practice <span style={{ fontWeight:"bold" }}>Fitts’ Law </span> in
             two different ways:
           </Typography>
           <ul>
             <li>
-              <Typography>By receiving theory-based prompts</Typography>
+              <Typography>By receiving <span style={{ fontWeight:"bold" }}>theory-based </span> prompts</Typography>
             </li>
             <li style={{ marginTop: "0.5rem" }}>
-              <Typography>By receiving context-based prompts</Typography>
+              <Typography>By receiving <span style={{ fontWeight:"bold" }}>context-based </span> prompts</Typography>
             </li>
           </ul>
           <Typography>
@@ -66,11 +66,11 @@ function HomePage() {
             <ol>
               <li>Press the start button.</li>
               <li>
-                Adjust the width, height, and spacing between the buttons
+                Adjust the <span style={{ fontWeight:"bold" }}>width, height, and spacing </span> between the buttons
                 appropriately using the sliders on the left.
               </li>
               <li>
-                When you think the buttons look good, press the “START TEST”
+                When you think the buttons look good, press the <span style={{ fontWeight:"bold" }}>“START TEST” </span>
                 button to test how well you have designed the buttons.
               </li>
               <li>
@@ -78,8 +78,8 @@ function HomePage() {
                 order.
               </li>
               <li>
-                Please remember that you cannot adjust the button properties
-                such as width and height after starting the test.
+                Please remember that you <span style={{ fontWeight:"bold" }}>cannot adjust </span> the button properties
+                such as width and height <span style={{ fontWeight:"bold" }}>after starting </span> the test.
               </li>
               <li>Repeat all the steps until you complete all 3 scenarios.</li>
             </ol>
