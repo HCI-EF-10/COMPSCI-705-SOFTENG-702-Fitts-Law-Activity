@@ -409,13 +409,13 @@ function TestPage() {
           <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
             <div
               style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? {display: "flex"} : {display: "none"}}>
-              <Typography>Have you considered changing the width and height?</Typography>
+              <Typography>Have you considered changing the <span style={{ fontWeight:"bold" }}>width </span> and <span style={{ fontWeight:"bold" }}>height </span>?</Typography>
             </div>
           </div>
           <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
             <div
               style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? {display: "flex"} : {display: "none"}}>
-              <Typography>How about altering the spaces between the buttons?</Typography>
+              <Typography>How about altering the <span style={{ fontWeight:"bold" }}>spaces </span> between the buttons?</Typography>
             </div>
           </div>
           <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
@@ -443,7 +443,7 @@ function TestPage() {
           {/* Theory based prompts */}
           <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
             <div style={(attemptNumber === 0) ? {display: "flex"} : {display: "none"}}>
-              <Typography>A brief summary of Fitts' Law is provided in the image below: </Typography>
+              <Typography>A brief summary of <span style={{ fontWeight:"bold" }}>Fitts' Law </span> is provided in the image below: </Typography>
             </div>
           </div>
           <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
@@ -453,8 +453,8 @@ function TestPage() {
           </div>
           <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
             <div style={(attemptNumber === 1) ? {display: "flex"} : {display: "none"}}>
-              <Typography>Fitts' law states that the larger the target is, the easier it is to acquire the target, thus
-                shorter time to acquire the target.</Typography>
+              <Typography>Fitts' law states that the <span style={{ fontWeight: "bold" }}>larger </span> the target is, the <span style={{ fontWeight: "bold" }}>easier </span>
+                it is to acquire the target, thus <span style={{ fontWeight: "bold" }}>shorter time </span> to acquire the target.</Typography>
             </div>
           </div>
           <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
@@ -464,8 +464,8 @@ function TestPage() {
           </div>
           <div style={promptValue === 2 ? {display: "flex"} : {display: "none"}}>
             <div style={(attemptNumber === 2) ? {display: "flex"} : {display: "none"}}>
-              <Typography>Fitts' law provides a model of human movement, which can accurately predict the amount of time
-                taken to move to and select a target. It is applied to the design of interactive objects in graphical
+              <Typography>Fitts' law provides a model of <span style={{ fontWeight:"bold" }}>human movement </span>, which can <span style={{ fontWeight:"bold" }}>accurately predict </span> the amount of time
+                taken to move to and select a target. It is applied to the design of <span style={{ fontWeight:"bold" }}>interactive objects</span> in graphical
                 displays</Typography>
             </div>
           </div>
@@ -509,7 +509,7 @@ function TestPage() {
             Then click checkout.
           </Typography>
           <Typography marginTop={"20px"}>
-            A timer will start to measure the time taken to finish the scenario upon closing this dialog.
+            A <span style={{ fontWeight:"bold" }}>timer </span> will start to measure the time taken to finish the scenario upon closing this dialog.
           </Typography>
           <Typography marginTop={"20px"}>
             This scenario will also persist on the settings pane, so you can follow these instructions.
