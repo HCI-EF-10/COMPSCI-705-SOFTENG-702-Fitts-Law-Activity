@@ -256,7 +256,7 @@ function TestPage() {
   const [numberOfErrors, setNumberOfErrors] = React.useState(0);
 
   const [attemptNumber, setAttemptNumber] = React.useState(0);
-  const [scenarioIndex, setScenarioIndex] = React.useState(2);
+  const [scenarioIndex, setScenarioIndex] = React.useState(0);
   const [actionIndex, setActionIndex] = React.useState(0);
   const [previousTime, setPreviousTime] = React.useState(0);
   const [timeElapsed, setTimeElapsed] = React.useState(0);
@@ -436,10 +436,15 @@ function TestPage() {
           </div>
           <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
             <div style={(attemptNumber === 2) ? { display: "flex" } : { display: "none" }}>
-            <img src = {require ('../../images/fittslaw2.jpg')} alt= "fittslawgraph" style = {{width:525, height: 250}}/>
-            <Typography>CHANGE THIS PART -- The formula for Fitts' law is: t = a + b log2 (2 d/w) which means the estimated time to acquire the target is proportional to the index of difficulty.</Typography>
+            <img src = {require ('../../images/fittslaw2.jpeg')} alt= "fittslawgraph" style = {{width:525, height: 250}}/>
             </div>
           </div>
+          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 2) ? { display: "flex" } : { display: "none" }}>
+            <Typography>Fitts' law provides a model of human movement, which can accurately predict the amount of time taken to move to and select a target. It is applied to the design of interactive objects in graphical displays</Typography>
+            </div>
+          </div>
+          
         </div>
       );
     } else {
