@@ -39,7 +39,7 @@ function HomePage() {
           label="Type of Prompt"
           onChange={handleChange}
         >
-          <MenuItem value={1}>Activity-based</MenuItem>
+          <MenuItem value={1}>Context-based</MenuItem>
           <MenuItem value={2}>Theory-based</MenuItem>
         </Select>
         <FormHelperText>Select type of prompt</FormHelperText>

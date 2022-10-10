@@ -375,7 +375,7 @@ function TestPage() {
           <Typography>Number of clicks: {numberOfClicks}</Typography>
           <Typography>Number of errors: {numberOfErrors}</Typography>
           <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
-          {/* For Activity Based Prompts*/}
+          {/* For Context Based Prompts*/}
           <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
             <div style={attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0 ? { display: "flex" } : { display: "none" }}>
               <Typography>You have spent a longer amount of time this attempt than your previous attempt. </Typography>
@@ -407,8 +407,13 @@ function TestPage() {
             </div>
           </div>
           <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
-            <div style={(attemptNumber === 2) ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 2) && (scenarioIndex !== 2) ? { display: "flex" } : { display: "none" }}>
               <Typography>Now it is time to move onto the next scenario.</Typography>
+            </div>
+            <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+              <div style={(attemptNumber === 2) && (scenarioIndex === 2) ? { display: "flex" } : { display: "none" }}>
+              <Typography>That is the end of the activity. Thank you for participating!</Typography>
+              </div>
             </div>
           </div>
           {/* for the other one */}
