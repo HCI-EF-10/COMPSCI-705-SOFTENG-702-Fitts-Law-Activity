@@ -1,10 +1,21 @@
 import {Box, Button, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import React from "react";
 
 function HomePage() {
     const navigate = useNavigate();
     const handleNavigate = () => {
         navigate("test");
+    };
+    const [prompt, setPrompt] = React.useState('');
+    const handleChange = (event: SelectChangeEvent) => {
+      setPrompt(event.target.value);
+      
     };
 
     return (
@@ -55,6 +66,20 @@ function HomePage() {
                 <br/>
                 You will go through 3 scenarios and have 3 attempts for each. So in total, you will go through 9 attempts.
             </Typography>
+            <FormControl sx={{ m: 5, minWidth: 120 }}>
+              <InputLabel id="">Type of Prompt</InputLabel>
+              <Select
+                labelId="prompt-label"
+                id="prompt-select"
+                value={prompt}
+                label="Type of Prompt"
+                onChange={handleChange}
+              >
+                <MenuItem value={1}>Context-based</MenuItem>
+                <MenuItem value={2}>Theory-based</MenuItem>
+              </Select>
+              <FormHelperText>Select type of prompt</FormHelperText>
+            </FormControl>
             <Button
                 variant="contained"
                 sx={{

@@ -5,8 +5,9 @@ import MenuContainer from "../../components/MenuContainer/MenuContainer";
 import FoodOptionsContainer from "../../components/FoodOptionContainer/FoodOptionsContainer";
 import { FoodOption } from "../../util/Types/ApiTypes";
 import { Scenario } from "../../util/Types/GeneralTypes";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PopUpDialog } from "../../components/PopUpDialog/PopUpDialog";
+
 
 const menu1: FoodOption[] = [
   {
@@ -92,15 +93,15 @@ const scenario1: Scenario = {
     },
     {
       menuItemIndex: 1,
+      foodOptionIndex: 4,
+    },
+    {
+      menuItemIndex: 1,
       foodOptionIndex: 2,
     },
     {
       menuItemIndex: 1,
       foodOptionIndex: 3,
-    },
-    {
-      menuItemIndex: 1,
-      foodOptionIndex: 4,
     },
   ]
 }
@@ -109,21 +110,45 @@ const scenario2: Scenario = {
   actions: [
     {
       menuItemIndex: 1,
+      foodOptionIndex: 4,
+    },
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 3,
+    },
+    {
+      menuItemIndex: 1,
       foodOptionIndex: 1,
+    },
+    {
+      menuItemIndex: 2,
+      foodOptionIndex: 5,
     },
     {
       menuItemIndex: 2,
       foodOptionIndex: 1,
     },
     {
-      menuItemIndex: 3,
-      foodOptionIndex: 1,
+      menuItemIndex: 2,
+      foodOptionIndex: 3,
+    },
+    {
+      menuItemIndex: 2,
+      foodOptionIndex: 6,
     },
   ]
 }
 
 const scenario3: Scenario = {
   actions: [
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 2,
+    },
+    {
+      menuItemIndex: 1,
+      foodOptionIndex: 3,
+    },
     {
       menuItemIndex: 1,
       foodOptionIndex: 1,
@@ -133,13 +158,36 @@ const scenario3: Scenario = {
       foodOptionIndex: 1,
     },
     {
+      menuItemIndex: 2,
+      foodOptionIndex: 3,
+    },
+    {
+      menuItemIndex: 2,
+      foodOptionIndex: 4,
+    },
+    {
+      menuItemIndex: 2,
+      foodOptionIndex: 2,
+    },
+    {
+      menuItemIndex: 3,
+      foodOptionIndex: 2,
+    },
+    {
       menuItemIndex: 3,
       foodOptionIndex: 1,
+    },
+    {
+      menuItemIndex: 3,
+      foodOptionIndex: 3,
     },
   ]
 }
 
 const scenarios: Scenario[] = [scenario1, scenario2, scenario3];
+
+
+
 
 function TestPage() {
   const [menu, setMenu] = React.useState(1);
@@ -209,15 +257,20 @@ function TestPage() {
   const [attemptNumber, setAttemptNumber] = React.useState(0);
   const [scenarioIndex, setScenarioIndex] = React.useState(0);
   const [actionIndex, setActionIndex] = React.useState(0);
+  const [previousTime, setPreviousTime] = React.useState(0);
+  const [timeElapsed, setTimeElapsed] = React.useState(0);
 
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [dialogTitle, setDialogTitle] = React.useState("");
   const [dialogContent, setDialogContent] = React.useState<JSX.Element>((<></>));
-
+  const state = useLocation().state as { promptValue: number };
+  const promptValue = state.promptValue;
   const navigate = useNavigate();
 
   useEffect(() => {
     if (currentInterval !== null) {
+
+      setPreviousTime(timeElapsed);
       clearInterval(currentInterval);
     }
 
@@ -227,9 +280,10 @@ function TestPage() {
 
       // Start interval to update time elapsed
       const interval = setInterval(() => {
-        const timeElapsed = Date.now() - newStartTime;
+        const localTimeElapsed = Date.now() - newStartTime;
 
-        const test = new Date(timeElapsed);
+        setTimeElapsed(localTimeElapsed);
+        const test = new Date(localTimeElapsed);
 
         const minutes = test.getMinutes();
         const seconds = test.getSeconds();
@@ -317,11 +371,79 @@ function TestPage() {
       setDialogTitle("Complete!");
 
       setDialogContent(
-        <div>
-          <Typography>You have completed scenario {scenarioIndex+1} attempt {attemptNumber+1}</Typography>
+        <div style={{ marginBottom: "0px", }}>
+          <Typography>You have completed scenario {scenarioIndex + 1} attempt {attemptNumber + 1}</Typography>
           <Typography>Number of clicks: {numberOfClicks}</Typography>
           <Typography>Number of errors: {numberOfErrors}</Typography>
           <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
+          {/* For Context Based Prompts*/}
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0 ? { display: "flex" } : { display: "none" }}>
+              <Typography>You have spent a longer amount of time this attempt than your previous attempt. </Typography>
+            </div>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={numberOfErrors > 0 ? { display: "flex" } : { display: "none" }}>
+              <Typography>You had {numberOfErrors} click errors.</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? { display: "flex" } : { display: "none" }}>
+              <Typography>Have you considered changing the width and height?</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={(numberOfErrors > 0) || (attemptNumber !== 0 && previousTime < timeElapsed && previousTime !== 0) ? { display: "flex" } : { display: "none" }}>
+              <Typography>How about altering the spaces between the buttons?</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={(numberOfErrors === 0) && previousTime > timeElapsed && previousTime !== 0 ? { display: "flex" } : { display: "none" }}>
+              <Typography>Well done! You have completed the scenario without any errors.</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={(numberOfErrors === 0) && previousTime > timeElapsed && previousTime !== 0 ? { display: "flex" } : { display: "none" }}>
+              <Typography>However, do keep note that there may still be ways to improve the Fitts' Law.</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 2) && (scenarioIndex !== 2) ? { display: "flex" } : { display: "none" }}>
+              <Typography>Now it is time to move onto the next scenario.</Typography>
+            </div>
+            <div style={promptValue === 1 ? { display: "flex" } : { display: "none" }}>
+              <div style={(attemptNumber === 2) && (scenarioIndex === 2) ? { display: "flex" } : { display: "none" }}>
+              <Typography>That is the end of the activity. Thank you for participating!</Typography>
+              </div>
+            </div>
+          </div>
+          {/* Theory based prompts */}
+          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 0) ? { display: "flex" } : { display: "none" }}>
+            <Typography>A brief summary of Fitts' Law is provided in the image below:  </Typography>
+            </div>
+          </div>
+          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 0) ? { display: "flex" } : { display: "none" }}>
+            <img src={require('../../images/fittslaw.jpg')} alt = "fittslawimage" style={{width: 525, height: 250}} />
+            </div>
+          </div>
+          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 1) ? { display: "flex" } : { display: "none" }}>
+            <Typography>Fitts' law states that the larger the target is, the easier it is to acquire the target, thus shorter time to acquire the target.</Typography>
+            </div>
+          </div>
+          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 2) ? { display: "flex" } : { display: "none" }}>
+            <img src = {require ('../../images/fittslaw2.jpeg')} alt= "fittslawgraph" style = {{width:525, height: 250}}/>
+            </div>
+          </div>
+          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 2) ? { display: "flex" } : { display: "none" }}>
+            <Typography>Fitts' law provides a model of human movement, which can accurately predict the amount of time taken to move to and select a target. It is applied to the design of interactive objects in graphical displays</Typography>
+            </div>
+          </div>
+          
         </div>
       );
     } else {
@@ -337,23 +459,24 @@ function TestPage() {
     } else {
       setDialogOpen(true);
 
-      setDialogTitle(`Scenario ${scenarioIndex+1}`);
+      setDialogTitle(`Scenario ${scenarioIndex + 1}`);
 
       const currentScenario = scenarios[scenarioIndex];
 
       let test = currentScenario.actions.map((action, index) => {
+        console.log(index)
         return (
-            <Typography key={index}>
-              Step {index + 1}. Click on {menuNames[action.menuItemIndex-1]} menu and select a {foodOptions[action.menuItemIndex-1][action.foodOptionIndex-1].title}.
-            </Typography>
+          <Typography key={index}>
+            Step {index + 1}. Click on {menuNames[action.menuItemIndex - 1]} menu and select a {foodOptions[action.menuItemIndex - 1][action.foodOptionIndex - 1].title}.
+          </Typography>
         )
       });
 
       setDialogContent((
         <>
-        <Typography variant="h3" marginBottom={"10px"}>
-              Please complete the following scenario:
-        </Typography>
+          <Typography variant="h3" marginBottom={"10px"}>
+            Please complete the following scenario:
+          </Typography>
           {test}
           <Typography>
             Then click checkout.
