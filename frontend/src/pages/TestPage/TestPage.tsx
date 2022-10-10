@@ -436,7 +436,8 @@ function TestPage() {
           </div>
           <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
             <div style={(attemptNumber === 2) ? { display: "flex" } : { display: "none" }}>
-            <Typography>The formula for Fitts' law is: t = a + b log2 (2 d/w) which means the estimated time to acquire the target is proportional to the index of difficulty.</Typography>
+            <img src = {require ('../../images/fittslaw2.jpg')} alt= "fittslawgraph" style = {{width:525, height: 250}}/>
+            <Typography>CHANGE THIS PART -- The formula for Fitts' law is: t = a + b log2 (2 d/w) which means the estimated time to acquire the target is proportional to the index of difficulty.</Typography>
             </div>
           </div>
         </div>
