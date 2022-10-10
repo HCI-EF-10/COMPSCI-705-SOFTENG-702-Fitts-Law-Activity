@@ -25,7 +25,7 @@ function FoodOptionsItem({
 
   const [clicked, setClicked] = useState(true);
   
-  useEffect(() => {setClicked(true)}, [isInTest]);
+  useEffect(() => {if(isInTest) setClicked(true)}, [isInTest]);
 
   return (
     <Box
@@ -37,7 +37,7 @@ function FoodOptionsItem({
         minWidth: "9rem",
       }}
     >
-      <Badge badgeContent={1} color="error" invisible={clicked || !isInTest}>
+      <Badge badgeContent={1} color="error" invisible={clicked}>
       <Button
         style={{
           width,
