@@ -236,7 +236,7 @@ function SettingsContainer({
                     color: actionIndex > index ? "green" : "red",
                   }}
                 >
-                  • Step {index + 1}. Click on{" "}
+                  • Step {index + 1}. In{" "}
                   {menuNames[action.menuItemIndex - 1]} menu and select a{" "}
                   {
                     foodOptions[action.menuItemIndex - 1][
