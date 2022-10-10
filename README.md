@@ -1,4 +1,4 @@
-# COMPSCI 705/SOFTENG 702 Fitts's Law Activity
+# COMPSCI 705/SOFTENG 702 Fitts' Law Activity
 This Fitts's Law activity is based around experiential learning.
 
 <h2>Dependencies</h2>
