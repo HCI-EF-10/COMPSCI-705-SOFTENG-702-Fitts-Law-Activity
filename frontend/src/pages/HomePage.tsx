@@ -16,10 +16,10 @@ function HomePage() {
             }}
         >
             <Typography variant="h1" sx={{marginTop: "5rem"}}>
-                Fitts's Law in Life
+                Fitts' Law in Life
             </Typography>
             <Typography sx={{marginTop: "1rem"}} marginLeft={"10rem"} marginRight={"10rem"}>
-                Hello! Our app is designed for users to learn and practice Fitts’s Law in two different ways:
+                Hello! Our app is designed for users to learn and practice Fitts’ Law in two different ways:
             </Typography>
             <Typography marginLeft={"9rem"} marginRight={"10rem"}>
                 <br/>
