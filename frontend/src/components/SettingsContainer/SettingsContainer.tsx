@@ -1,9 +1,5 @@
-import React, { useEffect } from "react";
-import { Grid, Button, Box, Typography, IconButton } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
 import MenuSlider from "../../components/MenuSlider/MenuSlider";
-import { useNavigate } from "react-router-dom";
-import HelpIcon from "@mui/icons-material/Help";
-import HTMLTooltip from "../HTMLTooltip/HTMLTooltip";
 import { Action } from "../../util/Types/GeneralTypes";
 import { FoodOption } from "../../util/Types/ApiTypes";
 
@@ -105,25 +101,25 @@ const foodOptions = [menu1, menu2, menu3];
 const menuNames = ["Burgers", "Sides", "Desserts"];
 
 function SettingsContainer({
-                             menu,
-                             widths,
-                             heights,
-                             xSpacings,
-                             ySpacings,
-                             setWidths,
-                             setHeights,
-                             setXSpacings,
-                             setYSpacings,
-                             scenarioNumber,
-                             attemptNumber,
-                             isInTest,
-                             onTestClick,
-                             currentAttemptClicks,
-                             currentAttemptErrors,
-                             timeElapsedFormatted,
-                             actions,
-                             actionIndex
-                           }: Props) {
+  menu,
+  widths,
+  heights,
+  xSpacings,
+  ySpacings,
+  setWidths,
+  setHeights,
+  setXSpacings,
+  setYSpacings,
+  scenarioNumber,
+  attemptNumber,
+  isInTest,
+  onTestClick,
+  currentAttemptClicks,
+  currentAttemptErrors,
+  timeElapsedFormatted,
+  actions,
+  actionIndex,
+}: Props) {
   return (
     <Box
       sx={{
@@ -135,6 +131,7 @@ function SettingsContainer({
         paddingTop: "2rem",
         paddingX: "1rem",
         height: "100vh",
+        overflowY: "scroll",
       }}
     >
       <Box display="flex" flexDirection="row">
@@ -150,86 +147,119 @@ function SettingsContainer({
           }
         /> */}
       </Box>
-      {!isInTest && (<>
-      <Typography variant="subtitle1" marginTop="0.25rem">
-        Selected component: Menu {menu} item
-      </Typography>
+      {!isInTest ? (
+        <>
+          <Typography variant="subtitle1" marginTop="0.25rem">
+            Selected component: Menu {menu} item
+          </Typography>
 
-      <Box
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              width: "100%",
+              marginTop: "4rem",
+              marginBottom: "auto",
+            }}
+          >
+            <Typography variant="h3" marginBottom="1rem">
+              Component Properties
+            </Typography>
+            <Box
+              sx={{
+                width: "100%",
+              }}
+            >
+              <MenuSlider
+                min={0}
+                max={100}
+                value={widths[menu - 1]}
+                onChange={(width) => {
+                  setWidths[menu - 1](width);
+                }}
+                menuText="Width"
+              />
+              <MenuSlider
+                min={0}
+                max={100}
+                value={heights[menu - 1]}
+                onChange={(height) => setHeights[menu - 1](height)}
+                menuText="Height"
+              />
+              <MenuSlider
+                min={0}
+                max={100}
+                value={xSpacings[menu - 1]}
+                onChange={(xSpacing) => setXSpacings[menu - 1](xSpacing)}
+                menuText="X Spacing"
+              />
+              <MenuSlider
+                min={0}
+                max={100}
+                value={ySpacings[menu - 1]}
+                onChange={(ySpacing) => setYSpacings[menu - 1](ySpacing)}
+                menuText="Y Spacing"
+              />
+            </Box>
+          </Box>
+        </>
+      ) : (
+        <Box display="flex" flexDirection="column" marginBottom="auto">
+          <Box marginY="8vh">
+            <Typography variant="h3">Scenario: {scenarioNumber}/3</Typography>
+            <Typography variant="h3">Attempt: {attemptNumber}/3</Typography>
+            <Typography variant="h3">
+              Number of clicks: {currentAttemptClicks}
+            </Typography>
+            <Typography variant="h3">Errors: {currentAttemptErrors}</Typography>
+            <Typography variant="h3">
+              Time elapsed: {timeElapsedFormatted}
+            </Typography>
+          </Box>
+
+          <Box>
+            <Typography variant="h3" paddingBottom="1rem">
+              Please complete the following scenario:
+            </Typography>
+            <Box
+              sx={{
+                borderTop: "1px solid #ccc",
+                borderBottom: "1px solid #ccc",
+                paddingY: "0.5rem",
+              }}
+            >
+              {actions.map((action, index) => (
+                <Typography
+                  key={index}
+                  sx={{
+                    color: actionIndex > index ? "green" : "red",
+                  }}
+                >
+                  • Step {index + 1}. Click on{" "}
+                  {menuNames[action.menuItemIndex - 1]} menu and select a{" "}
+                  {
+                    foodOptions[action.menuItemIndex - 1][
+                      action.foodOptionIndex - 1
+                    ].title
+                  }
+                  .
+                </Typography>
+              ))}
+              <Typography sx={{ color: "red" }}>
+                • Then click checkout.
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+      )}
+      <Button
+        variant="contained"
+        onClick={onTestClick}
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          width: "100%",
-          marginTop: "4rem",
+          marginY: "1rem",
         }}
       >
-        <Typography variant="h4" marginBottom="1rem">
-          Component Properties
-        </Typography>
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
-          <MenuSlider
-            min={0}
-            max={100}
-            value={widths[menu - 1]}
-            onChange={(width) => {
-              setWidths[menu - 1](width)
-            }}
-            menuText="Width"
-          />
-          <MenuSlider
-            min={0}
-            max={100}
-            value={heights[menu - 1]}
-            onChange={(height) => setHeights[menu - 1](height)}
-            menuText="Height"
-          />
-          <MenuSlider
-            min={0}
-            max={100}
-            value={xSpacings[menu - 1]}
-            onChange={(xSpacing) => setXSpacings[menu - 1](xSpacing)}
-            menuText="X Spacing"
-          />
-          <MenuSlider
-            min={0}
-            max={100}
-            value={ySpacings[menu - 1]}
-            onChange={(ySpacing) => setYSpacings[menu - 1](ySpacing)}
-            menuText="Y Spacing"
-          />
-        </Box>
-      </Box></>)}
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        marginY="4rem"
-      >
-        {isInTest && (<><Typography variant="h3">Scenario: {scenarioNumber}/3</Typography>
-        <Typography variant="h3">Attempt: {attemptNumber}/3</Typography>
-        <Typography variant="h3">Number of clicks: {currentAttemptClicks}</Typography>
-        <Typography variant="h3">Errors: {currentAttemptErrors}</Typography>
-        <Typography variant="h3">Time elapsed: {timeElapsedFormatted}</Typography></>)}
-      </Box>
-      <Box sx={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding:"20px"}}>
-        {isInTest && (<Typography variant="h3" padding="10px">Please complete the following scenario:</Typography>)}
-        {isInTest && actions.map((action, index) => (
-          <Typography key={index} sx={{color: actionIndex > index ? "green" : "red"}}>
-            Step {index + 1}. Click on {menuNames[action.menuItemIndex-1]} menu and select a {foodOptions[action.menuItemIndex-1][action.foodOptionIndex-1].title}.
-          </Typography>
-        ))}
-        {isInTest && (
-          <Typography sx={{color: "red"}}>
-            Then click checkout.
-          </Typography>
-        )}
-      </Box>
-      <Button variant="contained" onClick={onTestClick}>
         {isInTest ? "END TEST" : "START TEST"}
       </Button>
     </Box>
