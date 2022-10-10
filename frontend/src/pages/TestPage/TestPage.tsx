@@ -7,6 +7,8 @@ import { FoodOption } from "../../util/Types/ApiTypes";
 import { Scenario } from "../../util/Types/GeneralTypes";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PopUpDialog } from "../../components/PopUpDialog/PopUpDialog";
+import fittlaw from "../../images/fittslaw.jpg"
+
 
 const menu1: FoodOption[] = [
   {
@@ -419,17 +421,22 @@ function TestPage() {
           {/* Theory based prompts */}
           <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
             <div style={(attemptNumber === 0) ? { display: "flex" } : { display: "none" }}>
-            <Typography>log2 (2 d/w) is the Index of Difficulty (ID), a measurement that quantifies how hard it is to acquire the target.</Typography>
+            <Typography>A brief summary of Fitts' Law is provided in the image below:  </Typography>
+            </div>
+          </div>
+          <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
+            <div style={(attemptNumber === 0) ? { display: "flex" } : { display: "none" }}>
+            <img src={require('../../images/fittslaw.jpg')} alt = "fittslawimage" style={{width: 525, height: 250}} />
             </div>
           </div>
           <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
             <div style={(attemptNumber === 1) ? { display: "flex" } : { display: "none" }}>
-            <Typography>The formula for Fitts' law is: t = a + b log2 (2 d/w) which means the estimated time to acquire the target is proportional to the index of difficulty.</Typography>
+            <Typography>Fitts' law states that the larger the target is, the easier it is to acquire the target, thus shorter time to acquire the target.</Typography>
             </div>
           </div>
           <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
             <div style={(attemptNumber === 2) ? { display: "flex" } : { display: "none" }}>
-            <Typography>Fitts' law states that the larger the target is, the easier it is to acquire the target, thus shorter time to acquire the target</Typography>
+            <Typography>The formula for Fitts' law is: t = a + b log2 (2 d/w) which means the estimated time to acquire the target is proportional to the index of difficulty.</Typography>
             </div>
           </div>
         </div>
