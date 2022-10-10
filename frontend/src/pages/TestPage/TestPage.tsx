@@ -397,9 +397,9 @@ function TestPage() {
       />
       <MenuContainer
         handleClick={onMenuClick}
-        rowSpacing={100}
-        buttonWidth={100}
-        buttonHeight={100}
+        rowSpacing={50}
+        buttonWidth={50}
+        buttonHeight={70}
       />
 
       <FoodOptionsContainer

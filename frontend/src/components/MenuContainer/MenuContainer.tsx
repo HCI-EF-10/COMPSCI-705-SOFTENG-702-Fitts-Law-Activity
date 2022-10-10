@@ -15,8 +15,15 @@ type Props = {
 };
 
 const MenuButton = styled((props: ButtonProps) => (
-  <Button variant="outlined" {...props} />
-))({});
+  <Button variant="contained" {...props} />
+))({
+  backgroundColor: "#b26500",
+  fontSize: "1.25rem",
+  fontWeight: "700",
+  "&:hover": {
+    backgroundColor: "#7c4600",
+  },
+});
 
 function MenuContainer({
   rowSpacing,
