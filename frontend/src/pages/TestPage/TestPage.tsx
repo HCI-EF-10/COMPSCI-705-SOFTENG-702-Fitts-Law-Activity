@@ -416,7 +416,7 @@ function TestPage() {
               </div>
             </div>
           </div>
-          {/* for the other one */}
+          {/* Theory based prompts */}
           <div style={promptValue === 2 ? { display: "flex" } : { display: "none" }}>
             <div style={(attemptNumber === 0) ? { display: "flex" } : { display: "none" }}>
             <Typography>log2 (2 d/w) is the Index of Difficulty (ID), a measurement that quantifies how hard it is to acquire the target.</Typography>
