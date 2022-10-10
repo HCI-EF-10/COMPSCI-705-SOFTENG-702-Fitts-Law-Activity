@@ -48,6 +48,12 @@ function HomePage() {
                 <br/>
                 5. Please remember that you cannot adjust the button properties such as width and height after starting the
                 test.
+                <br/>
+                6. Repeat all the steps until you complete all 3 scenarios.
+            </Typography>
+            <Typography marginLeft={"10rem"} marginRight={"10rem"}>
+                <br/>
+                You will go through 3 scenarios and have 3 attempts for each. So in total, you will go through 9 attempts.
             </Typography>
             <Button
                 variant="contained"
