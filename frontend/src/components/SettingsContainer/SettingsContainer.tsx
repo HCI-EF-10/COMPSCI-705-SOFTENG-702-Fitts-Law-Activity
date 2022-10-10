@@ -193,14 +193,14 @@ function SettingsContainer({
             max={100}
             value={xSpacings[menu - 1]}
             onChange={(xSpacing) => setXSpacings[menu - 1](xSpacing)}
-            menuText="X Position"
+            menuText="X Spacing"
           />
           <MenuSlider
             min={0}
             max={100}
             value={ySpacings[menu - 1]}
             onChange={(ySpacing) => setYSpacings[menu - 1](ySpacing)}
-            menuText="Y Position"
+            menuText="Y Spacing"
           />
         </Box>
       </Box></>)}
