@@ -252,8 +252,8 @@ function TestPage() {
   const [numberOfClicks, setNumberOfClicks] = React.useState(0);
   const [numberOfErrors, setNumberOfErrors] = React.useState(0);
 
-  const [attemptNumber, setAttemptNumber] = React.useState(2);
-  const [scenarioIndex, setScenarioIndex] = React.useState(2);
+  const [attemptNumber, setAttemptNumber] = React.useState(0);
+  const [scenarioIndex, setScenarioIndex] = React.useState(0);
   const [actionIndex, setActionIndex] = React.useState(0);
   const [previousTime, setPreviousTime] = React.useState(0);
   const [timeElapsed, setTimeElapsed] = React.useState(0);
