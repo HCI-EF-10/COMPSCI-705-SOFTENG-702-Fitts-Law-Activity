@@ -22,5 +22,7 @@ Once you finish experimenting with the size and shape of the menus, you should r
 
 <h2>Differences between the project plan and actual implementation</h2>
 Overall, the implementation follows the project plan that was proposed at the start of the project. Initially, the plan focused on implementing two different methods of teaching, which were interweaving the theoretical teaching material throughout the activity VS giving interactive feedbacks. In our actual implementation, we expanded on these concepts and finalised our two teaching methods to be:
+
 - Giving feedback based on the input of the user. For example, if the user is making too many click mistakes, giving a feedback on increasing the size of the buttons.
+
 - Not giving feedback but instead delivering the theory material step-by-step throughout the activity. This allows the user to incrementally read the theoretical materials and absorb the content at their own pace with minimal intervention.
