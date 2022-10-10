@@ -394,6 +394,8 @@ function TestPage() {
           <Typography>Number of clicks: {numberOfClicks}</Typography>
           <Typography>Number of errors: {numberOfErrors}</Typography>
           <Typography>Time elapsed: {timeElapsedFormatted}</Typography>
+          <br></br>
+          <Typography display = "block" variant = "h3">Feedback</Typography>
           {/* For Context Based Prompts*/}
           <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
             <div
@@ -420,13 +422,13 @@ function TestPage() {
           </div>
           <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
             <div
-              style={(numberOfErrors === 0) && previousTime > timeElapsed && previousTime !== 0 ? {display: "flex"} : {display: "none"}}>
+              style={(numberOfErrors === 0) && ((attemptNumber===0) || (previousTime > timeElapsed && previousTime !== 0)) ? {display: "flex"} : {display: "none"}}>
               <Typography>Well done! You have completed the scenario without any errors.</Typography>
             </div>
           </div>
           <div style={promptValue === 1 ? {display: "flex"} : {display: "none"}}>
             <div
-              style={(numberOfErrors === 0) && previousTime > timeElapsed && previousTime !== 0 ? {display: "flex"} : {display: "none"}}>
+              style={(numberOfErrors === 0) && ((attemptNumber ===0) || (previousTime > timeElapsed && previousTime !== 0))  ? {display: "flex"} : {display: "none"}}>
               <Typography>However, do keep note that there may still be ways to improve the Fitts' Law.</Typography>
             </div>
           </div>
